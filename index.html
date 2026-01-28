@@ -22,28 +22,30 @@
       --radius: 8px;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Open Sans', sans-serif;
-      color: var(--foreground);
       background: var(--background);
+      color: var(--foreground);
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 16px;
+    }
+
+    section { padding: 80px 0; }
+    section.alt { background: var(--secondary); }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 48px;
     }
 
     /* ================= HEADER ================= */
@@ -64,9 +66,6 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    .header-logo {
       font-weight: 600;
       font-size: 14px;
     }
@@ -80,18 +79,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-      background: linear-gradient(135deg, #243f66, #1f2f44);
-      color: #ffffff;
       text-align: center;
+      color: #fff;
+      background: linear-gradient(135deg, #243f66, #1f2f44);
+      overflow: hidden;
     }
 
     .hero-video {
       position: absolute;
       inset: 0;
-      z-index: 1;
       pointer-events: none;
-      overflow: hidden;
+      z-index: 1;
     }
 
     .hero-video iframe {
@@ -101,8 +99,8 @@
       width: 120%;
       height: 120%;
       transform: translate(-50%, -50%);
-      border: none;
       opacity: 0.6;
+      border: none;
     }
 
     .hero-overlay {
@@ -119,7 +117,7 @@
     .hero-content {
       position: relative;
       z-index: 3;
-      max-width: 720px;
+      max-width: 760px;
     }
 
     .hero h1 {
@@ -140,48 +138,50 @@
 
     .hero-btn {
       display: inline-block;
-      background: #ffffff;
+      background: #fff;
       color: var(--primary);
       padding: 16px 32px;
       border-radius: var(--radius);
       font-weight: 600;
-      transition: opacity 0.2s;
     }
 
-    .hero-btn:hover {
-      opacity: 0.9;
+    /* ================= SIMPLE GRID ================= */
+
+    .grid {
+      display: grid;
+      gap: 24px;
     }
 
-    /* ================= SECTIONS ================= */
-
-    section {
-      padding: 80px 0;
+    @media (min-width: 768px) {
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .grid-4 { grid-template-columns: repeat(4, 1fr); }
     }
 
-    section.alt {
-      background: var(--secondary);
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     }
 
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 48px;
-    }
-
-    /* ================= CONTACTS ================= */
-
-    .contacts p {
-      text-align: center;
+    .card h3 {
+      margin-bottom: 8px;
       font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     /* ================= FOOTER ================= */
 
     footer {
       background: var(--primary);
-      color: #ffffff;
-      padding: 32px 0;
+      color: #fff;
       text-align: center;
+      padding: 32px 0;
       font-size: 14px;
     }
   </style>
@@ -189,22 +189,19 @@
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="container header-inner">
-    <div class="header-logo">Юлия Грошева · Менторинг бизнеса</div>
+    Юлия Грошева · Менторинг бизнеса
   </div>
 </header>
 
-<!-- HERO WITH VIDEO -->
 <section class="hero">
   <div class="hero-video">
     <iframe
       src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&modestbranding=1&playsinline=1"
       allow="autoplay; encrypted-media"
-      title="Background video"
-      referrerpolicy="strict-origin-when-cross-origin"
-    ></iframe>
+      title="Background video">
+    </iframe>
   </div>
 
   <div class="hero-overlay"></div>
@@ -217,11 +214,55 @@
   </div>
 </section>
 
-<!-- CONTACTS -->
-<section id="contacts" class="contacts alt">
+<section>
+  <div class="container">
+    <h2 class="section-title">О менторе</h2>
+    <p style="max-width:800px;margin:0 auto;color:var(--muted)">
+      Более 15 лет управленческого опыта в международных компаниях.
+      Помогаю собственникам и топ-менеджерам системно масштабировать бизнес,
+      повышать операционную эффективность и выходить на новые рынки.
+    </p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2 class="section-title">Карьера в цифрах</h2>
+    <div class="grid grid-4">
+      <div class="card"><h3>15+</h3><p>лет управления</p></div>
+      <div class="card"><h3>30+</h3><p>стран присутствия</p></div>
+      <div class="card"><h3>2000+</h3><p>сотрудников</p></div>
+      <div class="card"><h3>$150M+</h3><p>оборот компаний</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">Ключевые проекты</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>IPO и M&A</h3><p>Подготовка и сопровождение сделок</p></div>
+      <div class="card"><h3>Экспансия</h3><p>Выход на международные рынки</p></div>
+      <div class="card"><h3>ОЦО / SSC</h3><p>Построение глобальных центров</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="container">
+    <h2 class="section-title">Услуги</h2>
+    <div class="grid grid-3">
+      <div class="card"><h3>Индивидуальный менторинг</h3><p>от $300 / час</p></div>
+      <div class="card"><h3>Консалтинг проектов</h3><p>по запросу</p></div>
+      <div class="card"><h3>Групповые программы</h3><p>по запросу</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacts">
   <div class="container">
     <h2 class="section-title">Контакты</h2>
-    <p>
+    <p style="text-align:center">
       Email: <a href="mailto:julia@grosheva.com">julia@grosheva.com</a><br><br>
       LinkedIn:
       <a href="https://linkedin.com/in/julia-grosheva" target="_blank">
@@ -231,7 +272,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   © 2025 · Юлия Грошева
 </footer>
