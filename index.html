@@ -19,9 +19,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* --- ВСЕ СТИЛИ ДО ЭТОГО МЕСТА БЕЗ ИЗМЕНЕНИЙ --- */
+    :root {
+      --background: hsl(0, 0%, 100%);
+      --foreground: hsl(213, 35%, 20%);
+      --primary: hsl(213, 48%, 28%);
+      --primary-foreground: hsl(0, 0%, 100%);
+      --secondary: hsl(210, 20%, 96%);
+      --muted-foreground: hsl(213, 15%, 50%);
+      --border: hsl(214.3, 31.8%, 91.4%);
+      --radius: 0.5rem;
+    }
 
-    /* Hero Section */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+    }
+
+    .container {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,.95);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 4rem;
+    }
+
+    /* HERO */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -39,21 +78,21 @@
       z-index: 1;
     }
 
-    /* ✅ ИСПРАВЛЕННЫЙ ВАРИАНТ */
+    /* ✅ ИСПРАВЛЕННОЕ МЕСТО */
     .hero-video-wrapper iframe {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 120%;
-      height: 120%;
+      width: 140%;
+      height: 140%;
       transform: translate(-50%, -50%);
       border: none;
     }
 
-    @media (min-width: 768px) {
+    @media (max-width: 767px) {
       .hero-video-wrapper iframe {
-        width: 140%;
-        height: 140%;
+        width: 180%;
+        height: 180%;
       }
     }
 
@@ -71,47 +110,455 @@
     .hero-content {
       position: relative;
       z-index: 10;
+      color: #fff;
       text-align: center;
-      color: var(--primary-foreground);
-      padding: 0 1rem;
     }
 
-    /* --- ВСЕ СТИЛИ НИЖЕ БЕЗ ИЗМЕНЕНИЙ --- */
+    .hero-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 1rem 2rem;
+      border-radius: var(--radius);
+      text-decoration: none;
+      font-weight: 600;
+    }
   </style>
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="header">
-    <!-- без изменений -->
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
-        allow="autoplay; encrypted-media"
-        title="Background video">
-      </iframe>
+<header class="header">
+  <nav class="container">
+    <div class="header-content">
+      <a href="#">Юлия Грошева. Менторинг бизнеса</a>
     </div>
+  </nav>
+</header>
 
-    <div class="hero-overlay"></div>
+<section class="hero">
+  <div class="hero-video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&rel=0&modestbranding=1&playsinline=1"
+      allow="autoplay; encrypted-media"
+      title="Background video">
+    </iframe>
+  </div>
 
-    <div class="hero-content">
-      <h1>Юлия Грошева</h1>
-      <p class="subtitle">Стратегический и операционный менторинг</p>
-      <p class="industries">IT / Телекоммуникации / Логистика / Услуги</p>
-      <a href="#contacts" class="hero-btn">Оставить заявку</a>
-    </div>
+  <div class="hero-overlay"></div>
 
-    <div class="scroll-indicator">
-      <div class="scroll-indicator-inner">
-        <div class="scroll-indicator-dot"></div>
+  <div class="hero-content">
+    <h1>Юлия Грошева</h1>
+    <p>Стратегический и операционный менторинг</p>
+    <a href="#contacts" class="hero-btn">Оставить заявку</a>
+  </div>
+</section>
+
+<!-- About Mentor Section -->
+  <section class="about-mentor section-padding">
+    <div class="container">
+      <div class="about-mentor-grid">
+        <div class="about-mentor-image">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop" alt="Юлия Грошева">
+        </div>
+        <div class="about-mentor-content">
+          <h2>О менторе</h2>
+          <p>Привет! Я — Юлия Грошева, ментор для руководителей и собственников бизнеса в сфере технологий и услуг.</p>
+          <p>Более 15 лет я работала на руководящих позициях в международных компаниях, управляя финансами, юридическими вопросами, HR и операционными процессами.</p>
+          <p>Сейчас я помогаю предпринимателям и топ-менеджерам масштабировать бизнес, выходить на новые рынки и повышать операционную эффективность.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ОСТАЛЬНОЙ HTML — ПОЛНОСТЬЮ БЕЗ ИЗМЕНЕНИЙ -->
+  <!-- Career Section -->
+  <section class="career section-padding">
+    <div class="container">
+      <h2 class="section-title">Карьера в цифрах</h2>
+      <div class="career-grid">
+        <div class="career-card">
+          <div class="career-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+          </div>
+          <h3>15+</h3>
+          <p>лет на руководящих позициях</p>
+        </div>
+        <div class="career-card">
+          <div class="career-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>30+</h3>
+          <p>стран присутствия компаний</p>
+        </div>
+        <div class="career-card">
+          <div class="career-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>2000+</h3>
+          <p>сотрудников в управлении</p>
+        </div>
+        <div class="career-card">
+          <div class="career-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3>$150M+</h3>
+          <p>оборот компаний</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience section-padding">
+    <div class="container">
+      <h2 class="section-title">Профессиональный опыт</h2>
+      <div class="experience-content">
+        <p>Более 15 лет я работала на руководящих позициях в международных компаниях. За этот период у меня было много больших проектов, связанных с открытием компаний и банковских счетов для них во многих юрисдикциях с международным корпоративным структурированием и масштабированием процессов при выходе на новые рынки, а также по подготовке к IPO, M&A и прохождению DD.</p>
+        <p>Я хорошо разбираюсь в операционной эффективности финансовых, юридических, sales, HR, TnD процессов, глубоком анализе и визуализации данных.</p>
+        <p>Отдельно можно остановиться на моей экспертизе в создании международных центров обслуживания бизнеса (ОЦО/SSC), внедрении корпоративных бизнес-систем и процессов глобального масштаба и в стратегических вопросах развития отдельных направлений бизнеса.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects section-padding">
+    <div class="container">
+      <h2 class="section-title">Ключевые проекты</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Международная экспансия</h3>
+          <p>Открытие компаний и банковских счетов в 30+ юрисдикциях</p>
+        </div>
+        <div class="project-card">
+          <h3>Подготовка к IPO</h3>
+          <p>Комплексная подготовка компании к публичному размещению акций</p>
+        </div>
+        <div class="project-card">
+          <h3>M&A сделки</h3>
+          <p>Сопровождение сделок слияния и поглощения</p>
+        </div>
+        <div class="project-card">
+          <h3>Создание ОЦО/SSC</h3>
+          <p>Построение международных центров обслуживания бизнеса</p>
+        </div>
+        <div class="project-card">
+          <h3>Due Diligence</h3>
+          <p>Организация и прохождение комплексной проверки</p>
+        </div>
+        <div class="project-card">
+          <h3>Цифровая трансформация</h3>
+          <p>Внедрение корпоративных систем и автоматизация процессов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications Section -->
+  <section id="publications" class="publications section-padding">
+    <div class="container">
+      <h2 class="section-title">Публикации</h2>
+      <div class="publications-grid">
+        <div class="publication-card">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=300&fit=crop" alt="Агроэксперт">
+          <div class="publication-card-content">
+            <h3>Как построить эффективную систему KPI</h3>
+            <p>Практические рекомендации по внедрению системы ключевых показателей эффективности</p>
+            <a href="#">Читать статью →</a>
+          </div>
+        </div>
+        <div class="publication-card">
+          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="HR Tech Club">
+          <div class="publication-card-content">
+            <h3>Менторинг как инструмент развития лидеров</h3>
+            <p>Почему менторинг становится ключевым инструментом развития топ-менеджеров</p>
+            <a href="#">Читать статью →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics Section -->
+  <section id="topics" class="topics section-padding">
+    <div class="container">
+      <h2 class="section-title">Темы для выступлений</h2>
+      <div class="topics-grid">
+        <div class="topic-card">
+          <div class="topic-card-number">1</div>
+          <p>Операционная эффективность: как оптимизировать процессы и сократить издержки</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-card-number">2</div>
+          <p>Международная экспансия: практические аспекты выхода на новые рынки</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-card-number">3</div>
+          <p>Построение эффективных команд: от найма до мотивации</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-card-number">4</div>
+          <p>Data-driven подход: как внедрить культуру принятия решений на основе данных</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-card-number">5</div>
+          <p>Создание ОЦО/SSC: от концепции до реализации</p>
+        </div>
+        <div class="topic-card">
+          <div class="topic-card-number">6</div>
+          <p>Подготовка к M&A и IPO: что нужно знать руководителю</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Mentoring Section -->
+  <section class="why-mentoring section-padding">
+    <div class="container">
+      <h2 class="section-title">Почему менторинг?</h2>
+      <div class="why-mentoring-grid">
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          </div>
+          <h3>Экономия времени</h3>
+          <p>Не нужно набивать шишки самому — учитесь на чужом опыте</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Системный подход</h3>
+          <p>Структурированные методологии вместо хаотичных действий</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          </div>
+          <h3>Проверенные решения</h3>
+          <p>Работающие инструменты и практики из реального бизнеса</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Нетворкинг</h3>
+          <p>Доступ к сети контактов и экспертизе из разных индустрий</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Whom Section -->
+  <section id="for-whom" class="for-whom section-padding">
+    <div class="container">
+      <h2 class="section-title">Кому будет полезно со мной поработать</h2>
+      <p class="section-subtitle">Помогаю руководителям и компаниям достигать операционного совершенства</p>
+      
+      <div class="for-whom-grid">
+        <div class="for-whom-card">
+          <div class="for-whom-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Топ-менеджмент</h3>
+          <p>CEO, CFO, COO, HRD, Head of Legal</p>
+        </div>
+        <div class="for-whom-card">
+          <div class="for-whom-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
+          </div>
+          <h3>Размер компании</h3>
+          <p>Оборот 10-150 млн $, штат 50-2000 человек</p>
+        </div>
+        <div class="for-whom-card">
+          <div class="for-whom-card-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+          <h3>Сферы</h3>
+          <p>IT, Telecom, Услуги, Логистика, ОЦО/SSC</p>
+        </div>
+      </div>
+      
+      <div class="strengths">
+        <div class="strengths-inner">
+          <h3>Мои сильные стороны</h3>
+          <div class="strengths-grid">
+            <div class="strength-item">
+              <div class="strength-item-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h4>Международная экспансия</h4>
+              <p>Операционная поддержка выхода на международные рынки: финансы, юридическое сопровождение, найм</p>
+            </div>
+            <div class="strength-item">
+              <div class="strength-item-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+              </div>
+              <h4>Операционная эффективность</h4>
+              <p>Организация процессов, построение ОЦО/SSC, решение проблем кросс-функционального взаимодействия</p>
+            </div>
+            <div class="strength-item">
+              <div class="strength-item-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </div>
+              <h4>Визуализация и аналитика</h4>
+              <p>Построение системы дашбордов, найм эффективных лидеров и команд</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facts Section -->
+  <section id="about" class="facts section-padding">
+    <div class="container">
+      <h2 class="section-title">Факты обо мне</h2>
+      <div class="facts-grid">
+        <div class="fact-card">
+          <div class="fact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <p>Позитивное мышление и открытость</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <p>Люблю знакомиться с людьми из разных отраслей и профессий</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <p>Получаю большое удовольствие от решения бизнесовых и жизненных головоломок</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+          </div>
+          <p>Быстро и с удовольствием погружаюсь в новые задачи и проекты</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <p>Мыслю вне стандартных рамок и шаблонов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services section-padding">
+    <div class="container">
+      <h2 class="section-title">Услуги</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Индивидуальный менторинг</h3>
+          <p>Персональная работа над вашими бизнес-задачами и развитием лидерских качеств</p>
+          <div class="price">от $300/час</div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Консалтинг проектов</h3>
+          <p>Экспертная поддержка в реализации конкретных бизнес-проектов</p>
+          <div class="price">по запросу</div>
+        </div>
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Групповые программы</h3>
+          <p>Менторинг для команд топ-менеджеров и развитие корпоративной культуры</p>
+          <div class="price">по запросу</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="how-it-works section-padding">
+    <div class="container">
+      <h2 class="section-title">Как это работает</h2>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h3>Заявка</h3>
+          <p>Вы оставляете заявку через форму на сайте или связываетесь напрямую</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h3>Знакомство</h3>
+          <p>Проводим бесплатный ознакомительный звонок на 30 минут</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h3>Диагностика</h3>
+          <p>Анализируем текущую ситуацию и определяем цели работы</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <h3>Работа</h3>
+          <p>Регулярные сессии, практические задания и достижение результатов</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacts Section -->
+  <section id="contacts" class="contacts section-padding">
+    <div class="container">
+      <h2 class="section-title">Контакты</h2>
+      <div class="contacts-grid">
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <h3>Email</h3>
+          <a href="mailto:julia@grosheva.com">julia@grosheva.com</a>
+        </div>
+        <div class="contact-card">
+          <div class="contact-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <h3>LinkedIn</h3>
+          <a href="https://linkedin.com/in/julia-grosheva" target="_blank">linkedin.com/in/julia-grosheva</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="https://linkedin.com/in/julia-grosheva" target="_blank" aria-label="LinkedIn">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://julia-grosheva.ru/users/agreement#politika-konfidencialnosti" target="_blank" class="footer-link">
+          Политика конфиденциальности
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('active');
+    }
+
+    // Close mobile menu when clicking on links
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileNav').classList.remove('active');
+      });
+    });
+  </script>
 </body>
 </html>
