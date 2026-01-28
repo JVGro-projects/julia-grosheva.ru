@@ -22,20 +22,34 @@
     :root {
       --background: hsl(0, 0%, 100%);
       --foreground: hsl(213, 35%, 20%);
+      --card: hsl(0, 0%, 100%);
+      --card-foreground: hsl(213, 35%, 20%);
       --primary: hsl(213, 48%, 28%);
       --primary-foreground: hsl(0, 0%, 100%);
       --secondary: hsl(210, 20%, 96%);
+      --secondary-foreground: hsl(213, 35%, 20%);
+      --muted: hsl(210, 20%, 96%);
       --muted-foreground: hsl(213, 15%, 50%);
       --border: hsl(214.3, 31.8%, 91.4%);
       --radius: 0.5rem;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Open Sans', sans-serif;
       background: var(--background);
       color: var(--foreground);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
     .container {
@@ -44,23 +58,108 @@
       padding: 0 1rem;
     }
 
-    /* HEADER */
+    @media (min-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+    }
+
+    .section-padding {
+      padding: 4rem 0;
+    }
+
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 6rem 0;
+      }
+    }
+
+    /* Header */
     .header {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      background: rgba(255,255,255,.95);
-      border-bottom: 1px solid var(--border);
+      top: 0;
+      left: 0;
+      right: 0;
       z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
 
     .header-content {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       height: 4rem;
     }
 
-    /* HERO */
+    .header-logo {
+      font-weight: 600;
+      color: var(--foreground);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .header-logo:hover {
+      color: var(--primary);
+    }
+
+    .header-nav {
+      display: none;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .header-nav {
+        display: flex;
+      }
+    }
+
+    .header-nav a {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .header-nav a:hover {
+      color: var(--primary);
+    }
+
+    .mobile-menu-btn {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .mobile-menu-btn {
+        display: none;
+      }
+    }
+
+    .mobile-nav {
+      display: none;
+      padding: 1rem 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .mobile-nav.active {
+      display: block;
+    }
+
+    .mobile-nav a {
+      display: block;
+      padding: 0.5rem 0;
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      text-decoration: none;
+    }
+
+    /* Hero Section */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -75,17 +174,16 @@
       inset: 0;
       pointer-events: none;
       overflow: hidden;
-      z-index: 1;
     }
 
-    /* ✅ ИСПРАВЛЕННОЕ МЕСТО */
+    /* ✅ ИСПРАВЛЕННОЕ ВИДЕО */
     .hero-video-wrapper iframe {
       position: absolute;
       top: 50%;
       left: 50%;
+      transform: translate(-50%, -50%);
       width: 140%;
       height: 140%;
-      transform: translate(-50%, -50%);
       border: none;
     }
 
@@ -104,115 +202,992 @@
         hsla(213, 48%, 28%, 0.7),
         hsla(213, 48%, 28%, 0.5)
       );
-      z-index: 2;
     }
 
     .hero-content {
       position: relative;
       z-index: 10;
-      color: #fff;
       text-align: center;
+      color: var(--primary-foreground);
+      padding: 0 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .hero-content .industries {
+      font-size: 1.125rem;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
     }
 
     .hero-btn {
       display: inline-block;
-      background: #fff;
+      background: var(--primary-foreground);
       color: var(--primary);
       padding: 1rem 2rem;
+      font-size: 1.125rem;
+      font-weight: 600;
       border-radius: var(--radius);
       text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    .hero-btn:hover {
+      opacity: 0.9;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .scroll-indicator-inner {
+      width: 1.5rem;
+      height: 2.5rem;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 9999px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 0.5rem;
+    }
+
+    .scroll-indicator-dot {
+      width: 0.375rem;
+      height: 0.75rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 9999px;
+    }
+
+    /* About Mentor Section */
+    .about-mentor {
+      background: var(--background);
+    }
+
+    .about-mentor-grid {
+      display: grid;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (min-width: 1024px) {
+      .about-mentor-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .about-mentor-image img {
+      width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .about-mentor-content h2 {
+      font-size: 1.875rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-mentor-content p {
+      color: var(--muted-foreground);
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+    }
+    
+    /* Career Section */
+    .career {
+      background: var(--secondary);
+    }
+    
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .career-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    
+    .career-card {
+      display: flex;
+      gap: 24px;
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      align-items: flex-start;
+    }
+    
+    .career-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: var(--background);
+      padding: 8px;
+      flex-shrink: 0;
+    }
+    
+    .career-card h3 {
+      font-size: 1.125rem;
       font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .career-card a {
+      color: var(--primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    
+    .career-card a:hover {
+      text-decoration: underline;
+    }
+    
+    .career-card .period {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 8px;
+    }
+    
+    .career-card .description {
+      color: var(--muted-foreground);
+    }
+    
+    @media (max-width: 640px) {
+      .career-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+    
+    /* Experience Section */
+    .experience {
+      background: var(--background);
+    }
+    
+    .experience .prose {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .experience p {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    
+    /* Projects Section */
+    .projects {
+      background: var(--secondary);
+    }
+    
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 768px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .project-card {
+      display: flex;
+      gap: 16px;
+      background: var(--card);
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .project-card .icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .project-card p {
+      color: var(--muted-foreground);
+    }
+    
+    /* Publications Section */
+    .publications {
+      background: var(--background);
+    }
+    
+    .publications .intro {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto 48px;
+      color: var(--muted-foreground);
+    }
+    
+    .publications-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 1024px) {
+      .publications-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .publications-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .publication-card {
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      text-decoration: none;
+      transition: box-shadow 0.2s;
+    }
+    
+    .publication-card:hover {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    
+    .publication-card .image {
+      height: 128px;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    
+    .publication-card .image img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+    }
+    
+    .publication-card .content {
+      padding: 24px;
+    }
+    
+    .publication-card .meta {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      margin-bottom: 8px;
+    }
+    
+    .publication-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .publication-card:hover h3 {
+      color: var(--primary);
+    }
+    
+    .publication-card .desc {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    /* Topics Section */
+    .topics {
+      background: var(--secondary);
+    }
+    
+    .accordion {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .accordion-item {
+      background: var(--card);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px;
+      background: none;
+      border: none;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--foreground);
+      cursor: pointer;
+      text-align: left;
+    }
+    
+    .accordion-trigger:hover {
+      background: var(--secondary);
+    }
+    
+    .accordion-trigger .chevron {
+      transition: transform 0.2s;
+    }
+    
+    .accordion-item.open .accordion-trigger .chevron {
+      transform: rotate(180deg);
+    }
+    
+    .accordion-content {
+      display: none;
+      padding: 0 24px 24px;
+    }
+    
+    .accordion-item.open .accordion-content {
+      display: block;
+    }
+    
+    .accordion-content ul {
+      list-style: none;
+    }
+    
+    .accordion-content li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+      color: var(--muted-foreground);
+    }
+    
+    .accordion-content .bullet {
+      color: var(--primary);
+      margin-top: 4px;
+    }
+    
+    /* Why Mentoring Section */
+    .why-mentoring {
+      background: var(--background);
+    }
+    
+    .why-mentoring p {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+    
+    /* For Whom Section */
+    .for-whom {
+      background: var(--secondary);
+    }
+    
+    .for-whom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .for-whom-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .for-whom-card {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .for-whom-card img {
+      width: 100%;
+      min-height: 300px;
+      object-fit: cover;
+    }
+    
+    .for-whom-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(45, 74, 111, 0.8), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+    
+    .for-whom-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .for-whom-text p {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+    }
+    
+    .for-whom-text strong {
+      color: var(--foreground);
+    }
+    
+    .for-whom-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+    
+    /* Facts Section */
+    .facts {
+      background: var(--background);
+    }
+    
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 1024px) {
+      .facts-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .fact-card {
+      background: var(--secondary);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    
+    .fact-card .icon-wrapper {
+      width: 48px;
+      height: 48px;
+      background: rgba(45, 74, 111, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    
+    .fact-card .icon-wrapper svg {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+    
+    .fact-card p {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    /* Services Section */
+    .services {
+      background: var(--secondary);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .service-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+      transition: box-shadow 0.2s;
+    }
+    
+    .service-card:hover {
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    }
+    
+    .service-card .icon-wrapper {
+      width: 64px;
+      height: 64px;
+      background: rgba(45, 74, 111, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+    
+    .service-card .icon-wrapper svg {
+      width: 32px;
+      height: 32px;
+      color: var(--primary);
+    }
+    
+    .service-card h3 {
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+    
+    /* How It Works Section */
+    .how-it-works {
+      background: var(--background);
+    }
+    
+    .steps-wrapper {
+      position: relative;
+    }
+    
+    .steps-line {
+      display: none;
+      position: absolute;
+      top: 48px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--border);
+    }
+    
+    @media (min-width: 1024px) {
+      .steps-line {
+        display: block;
+      }
+    }
+    
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 32px;
+    }
+    
+    @media (max-width: 1024px) {
+      .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 640px) {
+      .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    .step {
+      text-align: center;
+      position: relative;
+    }
+    
+    .step-number {
+      width: 96px;
+      height: 96px;
+      background: var(--primary);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .step h3 {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .steps-note {
+      font-size: 14px;
+      color: var(--muted-foreground);
+      text-align: center;
+      margin-top: 48px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Contacts Section */
+    .contacts {
+      background: var(--secondary);
+    }
+    
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    
+    @media (max-width: 768px) {
+      .contacts-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .contacts h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .contacts .subtitle {
+      font-size: 1.25rem;
+      color: var(--muted-foreground);
+      margin-bottom: 32px;
+    }
+    
+    .contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--foreground);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .contact-item:hover {
+      color: var(--primary);
+    }
+    
+    .contact-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--primary);
+    }
+    
+    .contacts img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* Footer */
+    .footer {
+      background: var(--primary);
+      color: white;
+      padding: 32px 0;
+    }
+    
+    .footer-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+    }
+    
+    .footer a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    .footer a:hover {
+      opacity: 1;
+    }
+    
+    .footer svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    
+    .modal-overlay.active {
+      display: flex;
+    }
+    
+    .modal {
+      background: var(--card);
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      width: 100%;
+      max-width: 400px;
+      position: relative;
+      padding: 32px;
+    }
+    
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--muted-foreground);
+    }
+    
+    .modal-close:hover {
+      color: var(--foreground);
+    }
+    
+    .modal h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    
+    .modal .modal-subtitle {
+      color: var(--muted-foreground);
+      margin-bottom: 24px;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: inherit;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 4px;
+    }
+    
+    .checkbox-group label {
+      font-size: 14px;
+      color: var(--muted-foreground);
+    }
+    
+    .checkbox-group a {
+      color: var(--primary);
+    }
+    
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    
+    .btn-submit:hover {
+      background: #1e3a5f;
+    }
+    
+    /* SVG Icons */
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      vertical-align: middle;
     }
   </style>
 </head>
-
 <body>
 
-<header class="header">
-  <nav class="container">
-    <div class="header-content">
-      <a href="#">Юлия Грошева. Менторинг бизнеса</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <a href="#" class="logo">Юлия Грошева. Менторинг бизнеса</a>
+      <nav class="nav">
+        <a href="#experience">Мой опыт</a>
+        <a href="#publications">Публикации</a>
+        <a href="#for-whom">Для кого</a>
+        <a href="#about">Обо мне</a>
+        <a href="#how-it-works">Как это работает</a>
+        <a href="#contacts">Контакты</a>
+        <a href="#topics">Темы для выступлений</a>
+      </nav>
     </div>
-  </nav>
-</header>
+  </header>
 
-<section class="hero">
-  <div class="hero-video-wrapper">
-    <iframe
-      src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&rel=0&modestbranding=1&playsinline=1"
-      allow="autoplay; encrypted-media"
-      title="Background video">
-    </iframe>
-  </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Юлия Грошева</h1>
+      <p class="subtitle">Стратегический и операционный менторинг</p>
+      <p class="industries">IT / Телекоммуникации / Логистика / Услуги</p>
+      <a href="#" class="btn-primary" onclick="openModal(); return false;">Оставить заявку</a>
+    </div>
+  </section>
 
-  <div class="hero-overlay"></div>
-
-  <div class="hero-content">
-    <h1>Юлия Грошева</h1>
-    <p>Стратегический и операционный менторинг</p>
-    <a href="#contacts" class="hero-btn">Оставить заявку</a>
-  </div>
-</section>
-
-<!-- About Mentor Section -->
+  <!-- About Mentor Section -->
   <section class="about-mentor section-padding">
     <div class="container">
-      <div class="about-mentor-grid">
-        <div class="about-mentor-image">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop" alt="Юлия Грошева">
+      <div class="grid">
+        <div>
+          <h2>Я – ментор,</h2>
+          <p>работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент, которые хотят улучшить свою операционную эффективность, масштабироваться на новые рынки, определяя все окна возможностей и безопасно срезая углы, опираясь на мой опыт и экспертизу.</p>
+          
+          <h3>Доказательства моего профессионализма:</h3>
+          <ul>
+            <li>
+              <span class="bullet">•</span>
+              <span>серия глобальных проектов, сохранившая моим работодателям миллионы долларов,</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>репутация управленца, решающего сложные задачи в нужные сроки,</span>
+            </li>
+            <li>
+              <span class="bullet">•</span>
+              <span>признание коллег-экспертов, член <a href="https://mentorclub.ru/yuliya-grosheva" target="_blank">Клуба Менторов Дмитрия Волошина</a>.</span>
+            </li>
+          </ul>
         </div>
-        <div class="about-mentor-content">
-          <h2>О менторе</h2>
-          <p>Привет! Я — Юлия Грошева, ментор для руководителей и собственников бизнеса в сфере технологий и услуг.</p>
-          <p>Более 15 лет я работала на руководящих позициях в международных компаниях, управляя финансами, юридическими вопросами, HR и операционными процессами.</p>
-          <p>Сейчас я помогаю предпринимателям и топ-менеджерам масштабировать бизнес, выходить на новые рынки и повышать операционную эффективность.</p>
+        <div>
+          <img src="https://julia-grosheva.ru/thumb/2/vscuBkpATyQDQhFpVUX9Ew/628r/d/at7a2361_3.jpg" alt="Юлия Грошева">
         </div>
       </div>
     </div>
   </section>
 
   <!-- Career Section -->
-  <section class="career section-padding">
+  <section id="experience" class="career section-padding">
     <div class="container">
-      <h2 class="section-title">Карьера в цифрах</h2>
+      <h2 class="section-title">Карьерный путь</h2>
+      
       <div class="career-grid">
         <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+          <img src="https://julia-grosheva.ru/thumb/2/vSJqYUQ9pP5_mGO1FZW9fg/c64/d/nomentee_belyj_fon.jpg" alt="CoMentee">
+          <div>
+            <h3>Бизнес-ментор, консультант по операционной эффективности</h3>
+            <a href="https://comentee.ru/" target="_blank">CoMentee ↗</a>
+            <p class="description">Менторинговая и консультационная поддержка для предпринимателей и их бизнеса</p>
           </div>
-          <h3>15+</h3>
-          <p>лет на руководящих позициях</p>
         </div>
+        
         <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <img src="https://julia-grosheva.ru/thumb/2/sWn59OfSpTa1XXALDNeN0Q/c64/d/novyj_proekt_3.png" alt="БК Пари">
+          <div>
+            <h3>CFO</h3>
+            <a href="https://www.linkedin.com/company/pari-ru/about/" target="_blank">БК Пари ↗</a>
+            <p class="period">Июнь 2023 - Июль 2025</p>
+            <p class="description">Корпоративные финансы, Казначейство, Налоги, проекты в различных индустриях в многопрофильной международной группе компаний</p>
           </div>
-          <h3>30+</h3>
-          <p>стран присутствия компаний</p>
         </div>
+        
         <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <img src="https://julia-grosheva.ru/thumb/2/Os_z7Jxu0nGlLcMLpjZmPw/c64/d/logo_main-16_1.png" alt="Voximplant">
+          <div>
+            <h3>Vice President of Finance</h3>
+            <a href="https://www.linkedin.com/company/voximplant/about/" target="_blank">Voximplant ↗</a>
+            <p class="period">Февраль 2020 - Июнь 2023</p>
+            <p class="description">Управление финансовой, юридической деятельностью международной группы компаний, обеспечение функционирования бэкофисной IT инфраструктуры и BI систем.</p>
           </div>
-          <h3>2000+</h3>
-          <p>сотрудников в управлении</p>
         </div>
+        
         <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <img src="https://julia-grosheva.ru/thumb/2/0z9X_d5_KZVr2jQQ8dkXBA/c64/d/novyj_proekt_1_1.png" alt="ABBYY">
+          <div>
+            <h3>Head of Global Financial Reporting and Audit</h3>
+            <a href="https://www.linkedin.com/company/abbyy/about/" target="_blank">ABBYY ↗</a>
+            <p class="period">Апрель 2010 - Февраль 2020</p>
+            <p class="description">Управление операционной частью всех финансовых процессов международной группы компаний</p>
           </div>
-          <h3>$150M+</h3>
-          <p>оборот компаний</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Experience Section -->
-  <section id="experience" class="experience section-padding">
+  <section class="experience section-padding">
     <div class="container">
       <h2 class="section-title">Профессиональный опыт</h2>
-      <div class="experience-content">
+      
+      <div class="prose">
         <p>Более 15 лет я работала на руководящих позициях в международных компаниях. За этот период у меня было много больших проектов, связанных с открытием компаний и банковских счетов для них во многих юрисдикциях с международным корпоративным структурированием и масштабированием процессов при выходе на новые рынки, а также по подготовке к IPO, M&A и прохождению DD.</p>
         <p>Я хорошо разбираюсь в операционной эффективности финансовых, юридических, sales, HR, TnD процессов, глубоком анализе и визуализации данных.</p>
         <p>Отдельно можно остановиться на моей экспертизе в создании международных центров обслуживания бизнеса (ОЦО/SSC), внедрении корпоративных бизнес-систем и процессов глобального масштаба и в стратегических вопросах развития отдельных направлений бизнеса.</p>
@@ -224,30 +1199,47 @@
   <section class="projects section-padding">
     <div class="container">
       <h2 class="section-title">Ключевые проекты</h2>
+      
       <div class="projects-grid">
         <div class="project-card">
-          <h3>Международная экспансия</h3>
-          <p>Открытие компаний и банковских счетов в 30+ юрисдикциях</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Формирование международного ОЦО в структуре глобальной функции учета и отчетности холдинга на 25 ЮЛ: Россия, СНГ, Северная Америка, Европа, Япония, Австралия.</p>
         </div>
         <div class="project-card">
-          <h3>Подготовка к IPO</h3>
-          <p>Комплексная подготовка компании к публичному размещению акций</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Оптимизация процесса закрытия по группе (ежемесячное закрытие 25=>5, аудит МСФО по ГК 12 месяцев => 3 месяца с уменьшением стоимости аудита на 40%).</p>
         </div>
         <div class="project-card">
-          <h3>M&A сделки</h3>
-          <p>Сопровождение сделок слияния и поглощения</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Несколько успешных проектов по DD, реструктуризации международной группы компаний с российским участием (поддержка налоговой, юридической и HR части).</p>
         </div>
         <div class="project-card">
-          <h3>Создание ОЦО/SSC</h3>
-          <p>Построение международных центров обслуживания бизнеса</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Построение систем бюджетирования и управленческого учета с нуля, а также проекты по существенной реформации существующих процессов для удешевления их стоимости и повышения прозрачности.</p>
         </div>
         <div class="project-card">
-          <h3>Due Diligence</h3>
-          <p>Организация и прохождение комплексной проверки</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Оптимизация системы KPI для сотрудников (скоринговые карты, бонусные схемы, LTIP, ESOP) для повышения вовлеченности и бизнес-ориентации команд с положительным эффектом на увеличение прибыли.</p>
         </div>
         <div class="project-card">
-          <h3>Цифровая трансформация</h3>
-          <p>Внедрение корпоративных систем и автоматизация процессов</p>
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Построение системы дашбордов для визуализации данных (финансы, продажи, маркетинг, бэкофис) для выявления источников неэффективного расходования средств и повышения скорости принятия управленческих решений на базе прозрачных оцифрованных метрик.</p>
+        </div>
+        <div class="project-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Создание центра найма, обучения и стажерских программ для финансовой функции.</p>
+        </div>
+        <div class="project-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Реализация проекта разработки и внедрения ПО для автоматизации процессов международного налогообложения, бюджетирования, управленческого учета, закупок, электронного архива и системы контроля за регламентированной отчетностью.</p>
+        </div>
+        <div class="project-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Снижение стоимости расходов на бэкофис на 30%, при кратном росте бизнеса и объема транзакций.</p>
+        </div>
+        <div class="project-card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <p>Разработка и реализация успешных стратегий по выходу на безубыточность, возврату заемного финансирования и выходу на выполнение внешних ковенант в кризисный период.</p>
         </div>
       </div>
     </div>
@@ -257,23 +1249,70 @@
   <section id="publications" class="publications section-padding">
     <div class="container">
       <h2 class="section-title">Публикации</h2>
+      <p class="intro">В ходе моих менторских сессий часто встречается обсуждение однотипных вопросов. Я стараюсь собирать такой тематический контент и делать его публичным в виде статей, комментариев к исследованиям коллег, панельных обсуждений, выступлений в бизнес-клубах или в подкастах.</p>
+      
       <div class="publications-grid">
-        <div class="publication-card">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=300&fit=crop" alt="Агроэксперт">
-          <div class="publication-card-content">
-            <h3>Как построить эффективную систему KPI</h3>
-            <p>Практические рекомендации по внедрению системы ключевых показателей эффективности</p>
-            <a href="#">Читать статью →</a>
+        <a href="https://drive.google.com/file/d/138kcY86X0g32qaQayDWveuYSLMSYIUdy/view?usp=drive_link" target="_blank" class="publication-card">
+          <div class="image">
+            <img src="https://julia-grosheva.ru/thumb/2/usdxGwnEcncgWuGWzrs5fA/48c/d/logo-hr-day-3-300x87_931459.jpg" alt="">
           </div>
-        </div>
-        <div class="publication-card">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="HR Tech Club">
-          <div class="publication-card-content">
-            <h3>Менторинг как инструмент развития лидеров</h3>
-            <p>Почему менторинг становится ключевым инструментом развития топ-менеджеров</p>
-            <a href="#">Читать статью →</a>
+          <div class="content">
+            <div class="meta">11.12.2025 • HR-Tech Club</div>
+            <h3>Наставничество как инструмент роста, удержания и развития экспертизы внутри компании ↗</h3>
+            <p class="desc">Обсудили, как менторинг превращается в инструмент роста бизнеса: сокращает адаптацию, повышает мотивацию опытных сотрудников и делает знания внутри компании управляемыми.</p>
           </div>
-        </div>
+        </a>
+        
+        <a href="https://agroexpert.press/innovation/ekspert-rasskazala-kak-selhozpredpriyatiyam-stat-uspeshnymi/" target="_blank" class="publication-card">
+          <div class="image">
+            <img src="https://julia-grosheva.ru/thumb/2/ByXzFBfncPAd46ZCf7oZEg/c48/d/capture_20251023000639670.jpg" alt="">
+          </div>
+          <div class="content">
+            <div class="meta">17.10.2025 • Интервью Агроэксперт</div>
+            <h3>Операционная эффективность в агросекторе ↗</h3>
+            <p class="desc">Поговорили про то, что обычно в агросекторе все думают про риски логистики, поставок или валютных курсов, но часто потеря эффективности идет через несогласованные процессы и некачественные данные.</p>
+          </div>
+        </a>
+        
+        <a href="https://promentoring.mave.digital/ep-61" target="_blank" class="publication-card">
+          <div class="content">
+            <div class="meta">24.03.2025 • ProMentoring - Подкаст Ивана Рындина</div>
+            <h3>Как создать корпоративную культуру в компании ↗</h3>
+            <p class="desc">Обсудили зачем предпринимателю развивать корпоративную культуру, как избежать искусственности при внедрении новых ценностей и как технологии и ИИ могут помогать в построении культуры.</p>
+          </div>
+        </a>
+        
+        <a href="https://pro.rbc.ru/demo/67d801d69a79477e2627ea11" target="_blank" class="publication-card">
+          <div class="content">
+            <div class="meta">20.03.2025 • РБК PRO</div>
+            <h3>Управленческий учет и дашборды: за какими метриками следить руководителю ↗</h3>
+            <p class="desc">Иногда от скорости и точности принятия решений руководителя зависит судьба бизнеса. Разобрали, какие дашборды помогают держать руку на пульсе.</p>
+          </div>
+        </a>
+        
+        <a href="https://pro.rbc.ru/demo/676409289a794784cea026d9" target="_blank" class="publication-card">
+          <div class="content">
+            <div class="meta">25.12.2024 • РБК PRO</div>
+            <h3>Возьму в долю: как выбрать опционную программу для мотивации сотрудников ↗</h3>
+            <p class="desc">Опционы — прогрессивный способ удержания сотрудников: работает и в стартапе, и в крупной публичной компании. Рассмотрели 5 опционных моделей.</p>
+          </div>
+        </a>
+        
+        <a href="https://companies.rbc.ru/news/s51QBldFYf/mentoring-kak-instrument-transformatsii-chto-vdohnovlyaet-pomogat-drugim/" target="_blank" class="publication-card">
+          <div class="content">
+            <div class="meta">11.11.2024 • РБК</div>
+            <h3>Менторинг как инструмент трансформации: что вдохновляет помогать другим ↗</h3>
+            <p class="desc">Чем бизнес-менторинг отличается от наставничества в корпоративной среде и как найти баланс между карьерой и помощью другим.</p>
+          </div>
+        </a>
+        
+        <a href="https://alexkolokolov.com/ru/blog/dashbord-po-marketingu-i-finansam" target="_blank" class="publication-card">
+          <div class="content">
+            <div class="meta">13.04.2022 • Институт Бизнес Аналитики</div>
+            <h3>Как не слить инвестиции на маркетинг: кейс компании Voximplant ↗</h3>
+            <p class="desc">Статья Алексея Колоколова о том, как его команда помогла внедрить систему маркетинговых дашбордов.</p>
+          </div>
+        </a>
       </div>
     </div>
   </section>
@@ -282,30 +1321,78 @@
   <section id="topics" class="topics section-padding">
     <div class="container">
       <h2 class="section-title">Темы для выступлений</h2>
-      <div class="topics-grid">
-        <div class="topic-card">
-          <div class="topic-card-number">1</div>
-          <p>Операционная эффективность: как оптимизировать процессы и сократить издержки</p>
+      
+      <div class="accordion">
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Финансовый и управленческий учет
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><span class="bullet">•</span><span>Разница в подходах для выстраивания системы управленческого учета и дашбордов в бизнесах разного размера</span></li>
+              <li><span class="bullet">•</span><span>Построение, автоматизация и реформация систем бюджетирования и управленческого учета с нуля</span></li>
+              <li><span class="bullet">•</span><span>Экономическая эффективность и повышение прибыльности</span></li>
+              <li><span class="bullet">•</span><span>Информационная безопасность для финансистов и руководителей</span></li>
+              <li><span class="bullet">•</span><span>Экономическая эффективность и повышение прибыльности для руководителей отраслевых организаций</span></li>
+              <li><span class="bullet">•</span><span>Трансграничные платежи из РФ в условиях санкций</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="topic-card">
-          <div class="topic-card-number">2</div>
-          <p>Международная экспансия: практические аспекты выхода на новые рынки</p>
+        
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Оптимизация процессов
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><span class="bullet">•</span><span>Практикум по оптимизации бизнес-процессов - как высвободить ресурсы и улучшить финансовые результаты</span></li>
+              <li><span class="bullet">•</span><span>Сложности централизации бэкофисных процессов в компактных ОЦО</span></li>
+              <li><span class="bullet">•</span><span>BI-метрики и дашборды как способ экономии ресурсов</span></li>
+              <li><span class="bullet">•</span><span>Эффект экономии ресурсов компании от выстраивания системы BI метрик и дашбордов</span></li>
+              <li><span class="bullet">•</span><span>Операционная масштабируемость бизнеса: от мотивации и налоговой структуры к улучшению финансовых показателей</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="topic-card">
-          <div class="topic-card-number">3</div>
-          <p>Построение эффективных команд: от найма до мотивации</p>
+        
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            HR инструменты
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><span class="bullet">•</span><span>Менторинг как инструмент трансформации</span></li>
+              <li><span class="bullet">•</span><span>Долгосрочная мотивация: опционные программы, что выбрать и как внедрить без ошибок</span></li>
+              <li><span class="bullet">•</span><span>Выстраивание системы внутреннего наставничества и обмена опытом</span></li>
+              <li><span class="bullet">•</span><span>Сотрудники как амбассадоры HR бренда</span></li>
+              <li><span class="bullet">•</span><span>Тренд на создание Alumni сообществ для усиления HR бренда</span></li>
+              <li><span class="bullet">•</span><span>Как корпоративная культура влияет на операционную эффективность</span></li>
+              <li><span class="bullet">•</span><span>Устранение и предотвращение внутренних и кросс-функциональных конфликтов</span></li>
+              <li><span class="bullet">•</span><span>Практическое влияние системы мотивации на финансовое здоровье компании</span></li>
+            </ul>
+          </div>
         </div>
-        <div class="topic-card">
-          <div class="topic-card-number">4</div>
-          <p>Data-driven подход: как внедрить культуру принятия решений на основе данных</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">5</div>
-          <p>Создание ОЦО/SSC: от концепции до реализации</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">6</div>
-          <p>Подготовка к M&A и IPO: что нужно знать руководителю</p>
+        
+        <div class="accordion-item">
+          <button class="accordion-trigger" onclick="toggleAccordion(this)">
+            Для стартапов и акселераторов
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-content">
+            <ul>
+              <li><span class="bullet">•</span><span>От хаоса к системе: как стартапу выстроить процессы без бюрократии</span></li>
+              <li><span class="bullet">•</span><span>Финансовая осознанность фаундера: управленческий учёт без скучных таблиц</span></li>
+              <li><span class="bullet">•</span><span>Операционная масштабируемость: как расти в 3 раза, не утратив управляемость</span></li>
+              <li><span class="bullet">•</span><span>Менторинг и внутренняя экспертиза: как использовать опыт команды вместо внешних консультантов</span></li>
+              <li><span class="bullet">•</span><span>Деньги без потерь: финансовые ошибки стартапов и как их избежать</span></li>
+              <li><span class="bullet">•</span><span>Команда как актив: культура и мотивация без бюджета</span></li>
+              <li><span class="bullet">•</span><span>От идеи до прибыльности: стратегия выхода на безубыточность</span></li>
+              <li><span class="bullet">•</span><span>Как составить финансовую модель стартапа</span></li>
+              <li><span class="bullet">•</span><span>Как подготовить питчдек, который понимают инвесторы</span></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -314,96 +1401,34 @@
   <!-- Why Mentoring Section -->
   <section class="why-mentoring section-padding">
     <div class="container">
-      <h2 class="section-title">Почему менторинг?</h2>
-      <div class="why-mentoring-grid">
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          </div>
-          <h3>Экономия времени</h3>
-          <p>Не нужно набивать шишки самому — учитесь на чужом опыте</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3>Системный подход</h3>
-          <p>Структурированные методологии вместо хаотичных действий</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-          </div>
-          <h3>Проверенные решения</h3>
-          <p>Работающие инструменты и практики из реального бизнеса</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Нетворкинг</h3>
-          <p>Доступ к сети контактов и экспертизе из разных индустрий</p>
-        </div>
-      </div>
+      <h2 class="section-title">Почему мне интересно бизнес-менторство</h2>
+      <p>Для укрепления круговорота добра в природе и расширения своего нетворка хочу инвестировать время в помощь коллегам по тем вопросам, в которых я хорошо разбираюсь, чтобы поделиться опытом и сэкономить энергию заказчиков на реальное развитие своего бизнеса. Я верю, что идея менторства и грамотной передачи знаний поможет на глобальном уровне повлиять на общую атмосферу в бизнес-сообществе.</p>
     </div>
   </section>
 
   <!-- For Whom Section -->
   <section id="for-whom" class="for-whom section-padding">
     <div class="container">
-      <h2 class="section-title">Кому будет полезно со мной поработать</h2>
-      <p class="section-subtitle">Помогаю руководителям и компаниям достигать операционного совершенства</p>
-      
       <div class="for-whom-grid">
         <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <img src="https://julia-grosheva.ru/thumb/2/9tuRuRC_ujpc7jCtvfoeTg/c373/d/55213149_2.jpg" alt="">
+          <div class="overlay">
+            <h3>Кому будет полезно со мной поработать</h3>
           </div>
-          <h3>Топ-менеджмент</h3>
-          <p>CEO, CFO, COO, HRD, Head of Legal</p>
         </div>
-        <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-          </div>
-          <h3>Размер компании</h3>
-          <p>Оборот 10-150 млн $, штат 50-2000 человек</p>
-        </div>
-        <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          </div>
-          <h3>Сферы</h3>
-          <p>IT, Telecom, Услуги, Логистика, ОЦО/SSC</p>
+        <div class="for-whom-text">
+          <p><strong>Топ менеджмент</strong> — CEO, CFO, COO, HRD, Head of Legal в компаниях с оборотом от 10 до 150 млн долл, от 50 до 2000 человек.</p>
+          <p><strong>Сферы</strong> — IT, Telecom, Услуги, Логистика, ОЦО/SSC.</p>
         </div>
       </div>
       
-      <div class="strengths">
-        <div class="strengths-inner">
+      <div class="for-whom-grid" style="margin-top: 64px;">
+        <div class="for-whom-text">
           <h3>Мои сильные стороны</h3>
-          <div class="strengths-grid">
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <h4>Международная экспансия</h4>
-              <p>Операционная поддержка выхода на международные рынки: финансы, юридическое сопровождение, найм</p>
-            </div>
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-              </div>
-              <h4>Операционная эффективность</h4>
-              <p>Организация процессов, построение ОЦО/SSC, решение проблем кросс-функционального взаимодействия</p>
-            </div>
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </div>
-              <h4>Визуализация и аналитика</h4>
-              <p>Построение системы дашбордов, найм эффективных лидеров и команд</p>
-            </div>
-          </div>
+          <p>Операционная поддержка выхода на международные рынки (финансы, юридическое сопровождение корпоративной, коммерческой части и найма), организация процессов, построение ОЦО/SSC, операционная эффективность, визуализация данных, решение проблем бизнес-ориентации и кросс-функционального взаимодействия, найм эффективных лидеров и команд.</p>
+        </div>
+        <div class="for-whom-card">
+          <img src="https://julia-grosheva.ru/thumb/2/LnyLRUjEVDvmXWUP26z60A/c373/d/fgs16_m_text_pic2.jpg" alt="">
         </div>
       </div>
     </div>
@@ -413,34 +1438,35 @@
   <section id="about" class="facts section-padding">
     <div class="container">
       <h2 class="section-title">Факты обо мне</h2>
+      
       <div class="facts-grid">
         <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
           </div>
           <p>Позитивное мышление и открытость</p>
         </div>
         <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <p>Люблю знакомиться с людьми из разных отраслей и профессий</p>
         </div>
         <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.743-.95l.015-.102a2.52 2.52 0 0 0-.475-1.852 2.52 2.52 0 0 0-1.648-.945c-.46-.058-.873-.352-.943-.822a.99.99 0 0 1 .276-.837l1.568-1.568a1.02 1.02 0 0 0 .289-.878c-.049-.322-.263-.6-.515-.813l-1.5-1.26c-.416-.35-.416-.986 0-1.336l1.5-1.26c.252-.213.466-.49.515-.813Z"/><path d="M4.561 16.15c.049-.322-.059-.648-.289-.878L2.704 13.704a2.41 2.41 0 0 1-.706-1.704c0-.617.235-1.234.706-1.704l1.611-1.611a.98.98 0 0 1 .837-.276c.47.07.802.48.743.95l-.015.102a2.52 2.52 0 0 0 .475 1.852c.391.52.974.852 1.648.945.46.058.873.352.943.822a.99.99 0 0 1-.276.837L6.104 15.49a1.02 1.02 0 0 0-.289.878c.049.322.263.6.515.813l1.5 1.26c.416.35.416.986 0 1.336l-1.5 1.26c-.252.213-.466.49-.515.813Z"/></svg>
           </div>
           <p>Получаю большое удовольствие от решения бизнесовых и жизненных головоломок</p>
         </div>
         <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <p>Быстро и с удовольствием погружаюсь в новые задачи и проекты</p>
         </div>
         <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
           </div>
           <p>Мыслю вне стандартных рамок и шаблонов</p>
         </div>
@@ -451,31 +1477,32 @@
   <!-- Services Section -->
   <section class="services section-padding">
     <div class="container">
-      <h2 class="section-title">Услуги</h2>
+      <h2 class="section-title">Чем могу помочь как ментор</h2>
+      
       <div class="services-grid">
         <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
           </div>
-          <h3>Индивидуальный менторинг</h3>
-          <p>Персональная работа над вашими бизнес-задачами и развитием лидерских качеств</p>
-          <div class="price">от $300/час</div>
+          <h3>Выход на иностранные рынки</h3>
         </div>
         <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
           </div>
-          <h3>Консалтинг проектов</h3>
-          <p>Экспертная поддержка в реализации конкретных бизнес-проектов</p>
-          <div class="price">по запросу</div>
+          <h3>Выход из операционной деятельности</h3>
         </div>
         <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
           </div>
-          <h3>Групповые программы</h3>
-          <p>Менторинг для команд топ-менеджеров и развитие корпоративной культуры</p>
-          <div class="price">по запросу</div>
+          <h3>Построение / отладка бизнес-процессов</h3>
+        </div>
+        <div class="service-card">
+          <div class="icon-wrapper">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Построение команды</h3>
         </div>
       </div>
     </div>
@@ -484,50 +1511,67 @@
   <!-- How It Works Section -->
   <section id="how-it-works" class="how-it-works section-padding">
     <div class="container">
-      <h2 class="section-title">Как это работает</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Заявка</h3>
-          <p>Вы оставляете заявку через форму на сайте или связываетесь напрямую</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>Знакомство</h3>
-          <p>Проводим бесплатный ознакомительный звонок на 30 минут</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>Диагностика</h3>
-          <p>Анализируем текущую ситуацию и определяем цели работы</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3>Работа</h3>
-          <p>Регулярные сессии, практические задания и достижение результатов</p>
+      <h2 class="section-title">Схема взаимодействия</h2>
+      
+      <div class="steps-wrapper">
+        <div class="steps-line"></div>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Заявка</h3>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Бесплатная вводная встреча-знакомство</h3>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Составления плана взаимодействия, исходя из выявленных запросов</h3>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Согласование условий сотрудничества*</h3>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <h3>Проведение очных или онлайн консультаций в удобное время</h3>
+          </div>
         </div>
       </div>
+      
+      <p class="steps-note">* В качестве уважения участия в добрых делах до 100% стоимости консультаций может быть зачтено в виде подтвержденных взносов в любые официальные благотворительные организации.</p>
     </div>
   </section>
 
   <!-- Contacts Section -->
   <section id="contacts" class="contacts section-padding">
     <div class="container">
-      <h2 class="section-title">Контакты</h2>
       <div class="contacts-grid">
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <div>
+          <h2>Юлия Грошева</h2>
+          <p class="subtitle">Стратегический и операционный менторинг</p>
+          
+          <div class="contact-list">
+            <div class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Москва, Россия</span>
+            </div>
+            <a href="mailto:jg@comentee.ru" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>jg@comentee.ru</span>
+            </a>
+            <a href="https://www.linkedin.com/in/julia-grosheva" target="_blank" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+              <span>linkedin.com/in/julia-grosheva</span>
+            </a>
+            <a href="https://t.me/JuliaGr0" target="_blank" class="contact-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              <span>t.me/JuliaGr0</span>
+            </a>
           </div>
-          <h3>Email</h3>
-          <a href="mailto:julia@grosheva.com">julia@grosheva.com</a>
         </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </div>
-          <h3>LinkedIn</h3>
-          <a href="https://linkedin.com/in/julia-grosheva" target="_blank">linkedin.com/in/julia-grosheva</a>
+        <div>
+          <img src="https://julia-grosheva.ru/thumb/2/zYIPFIicyuqiwSLxWRL7wQ/461r/d/sw8a1200_kopiya.jpg" alt="Юлия Грошева">
         </div>
       </div>
     </div>
@@ -535,30 +1579,83 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <a href="https://linkedin.com/in/julia-grosheva" target="_blank" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://julia-grosheva.ru/users/agreement#politika-konfidencialnosti" target="_blank" class="footer-link">
-          Политика конфиденциальности
-        </a>
-      </div>
+    <div class="container footer-content">
+      <a href="https://linkedin.com/in/julia-grosheva" target="_blank" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://julia-grosheva.ru/users/agreement#politika-konfidencialnosti" target="_blank">Политика конфиденциальности</a>
     </div>
   </footer>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      nav.classList.toggle('active');
-    }
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <h2>Онлайн заявка</h2>
+      <p class="modal-subtitle">Введите данные для заказа обратного звонка</p>
+      
+      <form onsubmit="submitForm(event)">
+        <div class="form-group">
+          <input type="text" placeholder="Имя *" required>
+        </div>
+        <div class="form-group">
+          <input type="tel" placeholder="Телефон *" required>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Ссылка на профиль в LinkedIn или соцсети *" required>
+        </div>
+        <div class="checkbox-group">
+          <input type="checkbox" id="agree" required>
+          <label for="agree">
+            Я выражаю <a href="https://julia-grosheva.ru/users/agreement" target="_blank">согласие на передачу и обработку персональных данных</a> в соответствии с <a href="https://julia-grosheva.ru/users/agreement#politika-konfidencialnosti" target="_blank">Политикой конфиденциальности</a>
+          </label>
+        </div>
+        <button type="submit" class="btn-submit">Отправить</button>
+      </form>
+    </div>
+  </div>
 
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('mobileNav').classList.remove('active');
+  <script>
+    // Modal
+    function openModal() {
+      document.getElementById('modal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+      document.getElementById('modal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    document.getElementById('modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+    
+    function submitForm(e) {
+      e.preventDefault();
+      alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+      closeModal();
+    }
+    
+    // Accordion
+    function toggleAccordion(button) {
+      const item = button.parentElement;
+      item.classList.toggle('open');
+    }
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     });
   </script>
+
 </body>
 </html>
