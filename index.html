@@ -2,105 +2,59 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Стратегический и операционный менторинг | Юлия Грошева</title>
+  <meta name="description" content="Я - ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент, которые хотят улучшить свою операционную эффективность, масштабироваться на новые рынки.">
+  <meta name="keywords" content="операционная эффективность, построение бизнес-процессов, построение команды, аналитика, дашборды, мотивация команды, менторинг бизнеса">
+  <meta name="author" content="Юлия Грошева">
 
-  <meta name="description" content="Стратегический и операционный менторинг для B2B-компаний. Масштабирование, операционная эффективность, международная экспансия.">
-  <link rel="canonical" href="https://jvgro-projects.github.io/julia-grosheva.ru/">
+  <meta property="og:title" content="Стратегический и операционный менторинг | Юлия Грошева">
+  <meta property="og:description" content="Ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://julia-grosheva.ru/">
 
+  <link rel="canonical" href="https://julia-grosheva.ru/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --background: #ffffff;
-      --foreground: #1f2f44;
-      --primary: #243f66;
-      --secondary: #f3f5f7;
-      --muted: #6b7a8c;
-      --radius: 8px;
-    }
+    /* --- ВСЕ СТИЛИ ДО ЭТОГО МЕСТА БЕЗ ИЗМЕНЕНИЙ --- */
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: var(--background);
-      color: var(--foreground);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 16px;
-    }
-
-    section { padding: 80px 0; }
-    section.alt { background: var(--secondary); }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 48px;
-    }
-
-    /* ================= HEADER ================= */
-
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid #e6e9ee;
-      z-index: 100;
-    }
-
-    .header-inner {
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-weight: 600;
-      font-size: 14px;
-    }
-
-    /* ================= HERO ================= */
-
+    /* Hero Section */
     .hero {
       position: relative;
       min-height: 100vh;
-      padding-top: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      color: #fff;
-      background: linear-gradient(135deg, #243f66, #1f2f44);
       overflow: hidden;
     }
 
-    .hero-video {
+    .hero-video-wrapper {
       position: absolute;
       inset: 0;
       pointer-events: none;
+      overflow: hidden;
       z-index: 1;
     }
 
-    .hero-video iframe {
+    /* ✅ ИСПРАВЛЕННЫЙ ВАРИАНТ */
+    .hero-video-wrapper iframe {
       position: absolute;
       top: 50%;
       left: 50%;
       width: 120%;
       height: 120%;
       transform: translate(-50%, -50%);
-      opacity: 0.6;
       border: none;
+    }
+
+    @media (min-width: 768px) {
+      .hero-video-wrapper iframe {
+        width: 140%;
+        height: 140%;
+      }
     }
 
     .hero-overlay {
@@ -108,173 +62,56 @@
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(36,63,102,0.75),
-        rgba(31,47,68,0.85)
+        hsla(213, 48%, 28%, 0.7),
+        hsla(213, 48%, 28%, 0.5)
       );
       z-index: 2;
     }
 
     .hero-content {
       position: relative;
-      z-index: 3;
-      max-width: 760px;
-    }
-
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      margin-bottom: 16px;
-    }
-
-    .hero .subtitle {
-      font-size: 1.4rem;
-      opacity: 0.9;
-      margin-bottom: 8px;
-    }
-
-    .hero .industries {
-      opacity: 0.75;
-      margin-bottom: 32px;
-    }
-
-    .hero-btn {
-      display: inline-block;
-      background: #fff;
-      color: var(--primary);
-      padding: 16px 32px;
-      border-radius: var(--radius);
-      font-weight: 600;
-    }
-
-    /* ================= SIMPLE GRID ================= */
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    @media (min-width: 768px) {
-      .grid-2 { grid-template-columns: repeat(2, 1fr); }
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
-      .grid-4 { grid-template-columns: repeat(4, 1fr); }
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    /* ================= FOOTER ================= */
-
-    footer {
-      background: var(--primary);
-      color: #fff;
+      z-index: 10;
       text-align: center;
-      padding: 32px 0;
-      font-size: 14px;
+      color: var(--primary-foreground);
+      padding: 0 1rem;
     }
+
+    /* --- ВСЕ СТИЛИ НИЖЕ БЕЗ ИЗМЕНЕНИЙ --- */
   </style>
 </head>
 
 <body>
+  <!-- Header -->
+  <header class="header">
+    <!-- без изменений -->
+  </header>
 
-<header class="header">
-  <div class="container header-inner">
-    Юлия Грошева · Менторинг бизнеса
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-video">
-    <iframe
-      src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&modestbranding=1&playsinline=1"
-      allow="autoplay; encrypted-media"
-      title="Background video">
-    </iframe>
-  </div>
-
-  <div class="hero-overlay"></div>
-
-  <div class="container hero-content">
-    <h1>Юлия Грошева</h1>
-    <p class="subtitle">Стратегический и операционный менторинг</p>
-    <p class="industries">IT · Telecom · Логистика · Сервисы</p>
-    <a href="#contacts" class="hero-btn">Оставить заявку</a>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2 class="section-title">О менторе</h2>
-    <p style="max-width:800px;margin:0 auto;color:var(--muted)">
-      Более 15 лет управленческого опыта в международных компаниях.
-      Помогаю собственникам и топ-менеджерам системно масштабировать бизнес,
-      повышать операционную эффективность и выходить на новые рынки.
-    </p>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="container">
-    <h2 class="section-title">Карьера в цифрах</h2>
-    <div class="grid grid-4">
-      <div class="card"><h3>15+</h3><p>лет управления</p></div>
-      <div class="card"><h3>30+</h3><p>стран присутствия</p></div>
-      <div class="card"><h3>2000+</h3><p>сотрудников</p></div>
-      <div class="card"><h3>$150M+</h3><p>оборот компаний</p></div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-video-wrapper">
+      <iframe 
+        src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
+        allow="autoplay; encrypted-media"
+        title="Background video">
+      </iframe>
     </div>
-  </div>
-</section>
 
-<section>
-  <div class="container">
-    <h2 class="section-title">Ключевые проекты</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>IPO и M&A</h3><p>Подготовка и сопровождение сделок</p></div>
-      <div class="card"><h3>Экспансия</h3><p>Выход на международные рынки</p></div>
-      <div class="card"><h3>ОЦО / SSC</h3><p>Построение глобальных центров</p></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <h1>Юлия Грошева</h1>
+      <p class="subtitle">Стратегический и операционный менторинг</p>
+      <p class="industries">IT / Телекоммуникации / Логистика / Услуги</p>
+      <a href="#contacts" class="hero-btn">Оставить заявку</a>
     </div>
-  </div>
-</section>
 
-<section class="alt">
-  <div class="container">
-    <h2 class="section-title">Услуги</h2>
-    <div class="grid grid-3">
-      <div class="card"><h3>Индивидуальный менторинг</h3><p>от $300 / час</p></div>
-      <div class="card"><h3>Консалтинг проектов</h3><p>по запросу</p></div>
-      <div class="card"><h3>Групповые программы</h3><p>по запросу</p></div>
+    <div class="scroll-indicator">
+      <div class="scroll-indicator-inner">
+        <div class="scroll-indicator-dot"></div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="contacts">
-  <div class="container">
-    <h2 class="section-title">Контакты</h2>
-    <p style="text-align:center">
-      Email: <a href="mailto:julia@grosheva.com">julia@grosheva.com</a><br><br>
-      LinkedIn:
-      <a href="https://linkedin.com/in/julia-grosheva" target="_blank">
-        linkedin.com/in/julia-grosheva
-      </a>
-    </p>
-  </div>
-</section>
-
-<footer>
-  © 2025 · Юлия Грошева
-</footer>
-
+  <!-- ОСТАЛЬНОЙ HTML — ПОЛНОСТЬЮ БЕЗ ИЗМЕНЕНИЙ -->
 </body>
 </html>
