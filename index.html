@@ -2,450 +2,164 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Стратегический и операционный менторинг | Юлия Грошева</title>
-  <meta name="description" content="Я - ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент, которые хотят улучшить свою операционную эффективность, масштабироваться на новые рынки.">
-  <meta name="keywords" content="операционная эффективность, построение бизнес-процессов, построение команды, аналитика, дашборды, мотивация команды, менторинг бизнеса">
-  <meta name="author" content="Юлия Грошева">
-  
-  <meta property="og:title" content="Стратегический и операционный менторинг | Юлия Грошева">
-  <meta property="og:description" content="Ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://julia-grosheva.ru/">
-  
+
+  <meta name="description" content="Стратегический и операционный менторинг для B2B компаний. Масштабирование, операционная эффективность, международная экспансия.">
   <link rel="canonical" href="https://julia-grosheva.ru/">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
+
   <style>
     :root {
-      --background: hsl(0, 0%, 100%);
-      --foreground: hsl(213, 35%, 20%);
-      --card: hsl(0, 0%, 100%);
-      --card-foreground: hsl(213, 35%, 20%);
-      --primary: hsl(213, 48%, 28%);
-      --primary-foreground: hsl(0, 0%, 100%);
-      --secondary: hsl(210, 20%, 96%);
-      --secondary-foreground: hsl(213, 35%, 20%);
-      --muted: hsl(210, 20%, 96%);
-      --muted-foreground: hsl(213, 15%, 50%);
-      --border: hsl(214.3, 31.8%, 91.4%);
-      --radius: 0.5rem;
+      --background: #ffffff;
+      --foreground: #1f2f44;
+      --primary: #243f66;
+      --secondary: #f3f5f7;
+      --muted: #6b7a8c;
+      --radius: 8px;
     }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: 'Open Sans', sans-serif;
-      background: var(--background);
       color: var(--foreground);
+      background: var(--background);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
     }
-    
+
+    a { color: inherit; text-decoration: none; }
+
     .container {
-      max-width: 72rem;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 1rem;
+      padding: 0 16px;
     }
-    
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 1.5rem;
-      }
-    }
-    
-    .section-padding {
-      padding: 4rem 0;
-    }
-    
-    @media (min-width: 768px) {
-      .section-padding {
-        padding: 6rem 0;
-      }
-    }
-    
+
     /* Header */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e6e9ee;
+      z-index: 100;
     }
-    
+
     .header-content {
+      height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 4rem;
     }
-    
+
     .header-logo {
       font-weight: 600;
-      color: var(--foreground);
-      text-decoration: none;
-      transition: color 0.3s;
     }
-    
-    .header-logo:hover {
-      color: var(--primary);
-    }
-    
-    .header-nav {
-      display: none;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 1024px) {
-      .header-nav {
-        display: flex;
-      }
-    }
-    
-    .header-nav a {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .header-nav a:hover {
-      color: var(--primary);
-    }
-    
-    .mobile-menu-btn {
-      display: block;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-    
-    @media (min-width: 1024px) {
-      .mobile-menu-btn {
-        display: none;
-      }
-    }
-    
-    .mobile-nav {
-      display: none;
-      padding: 1rem 0;
-      border-top: 1px solid var(--border);
-    }
-    
-    .mobile-nav.active {
-      display: block;
-    }
-    
-    .mobile-nav a {
-      display: block;
-      padding: 0.5rem 0;
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      text-decoration: none;
-    }
-    
-    /* Hero Section */
+
+    /* Hero */
     .hero {
-      position: relative;
       min-height: 100vh;
+      padding-top: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
-    }
-    
-    .hero-video-wrapper {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .hero-video-wrapper iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300%;
-      height: 300%;
-      min-width: 100%;
-      min-height: 100%;
-      border: none;
-    }
-    
-    @media (min-width: 768px) {
-      .hero-video-wrapper iframe {
-        width: 180%;
-        height: 180%;
-      }
-    }
-    
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, hsla(213, 48%, 28%, 0.7), hsla(213, 48%, 28%, 0.5));
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 10;
+      background: linear-gradient(
+        135deg,
+        #243f66 0%,
+        #1f2f44 100%
+      );
+      color: #fff;
       text-align: center;
-      color: var(--primary-foreground);
-      padding: 0 1rem;
     }
-    
-    .hero-content h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 0.6s ease-out;
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 16px;
     }
-    
-    @media (min-width: 768px) {
-      .hero-content h1 {
-        font-size: 3rem;
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .hero-content h1 {
-        font-size: 3.75rem;
-      }
-    }
-    
-    .hero-content .subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
+
+    .hero .subtitle {
+      font-size: 1.4rem;
       opacity: 0.9;
-      animation: fadeIn 0.6s ease-out 0.1s both;
+      margin-bottom: 8px;
     }
-    
-    @media (min-width: 768px) {
-      .hero-content .subtitle {
-        font-size: 1.5rem;
-      }
+
+    .hero .industries {
+      opacity: 0.75;
+      margin-bottom: 32px;
     }
-    
-    .hero-content .industries {
-      font-size: 1.125rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.8;
-      animation: fadeIn 0.6s ease-out 0.2s both;
-    }
-    
+
     .hero-btn {
       display: inline-block;
-      background: var(--primary-foreground);
+      background: #fff;
       color: var(--primary);
-      padding: 1rem 2rem;
-      font-size: 1.125rem;
-      font-weight: 600;
-      border: none;
+      padding: 16px 32px;
       border-radius: var(--radius);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.3s;
-      animation: fadeIn 0.6s ease-out 0.3s both;
+      font-weight: 600;
+      transition: opacity 0.2s;
     }
-    
-    .hero-btn:hover {
-      opacity: 0.9;
+
+    .hero-btn:hover { opacity: 0.9; }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
     }
-    
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 1s infinite;
-    }
-    
-    .scroll-indicator-inner {
-      width: 1.5rem;
-      height: 2.5rem;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 9999px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 0.5rem;
-    }
-    
-    .scroll-indicator-dot {
-      width: 0.375rem;
-      height: 0.75rem;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 9999px;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      50% {
-        transform: translateX(-50%) translateY(-10px);
-      }
-    }
-    
-    /* About Mentor Section */
-    .about-mentor {
-      background: var(--background);
-    }
-    
-    .about-mentor-grid {
-      display: grid;
-      gap: 3rem;
-      align-items: center;
-    }
-    
-    @media (min-width: 1024px) {
-      .about-mentor-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .about-mentor-image {
-      position: relative;
-    }
-    
-    .about-mentor-image img {
-      width: 100%;
-      border-radius: 1rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-    
-    .about-mentor-content h2 {
-      font-size: 1.875rem;
-      font-weight: 700;
-      color: var(--foreground);
-      margin-bottom: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .about-mentor-content h2 {
-        font-size: 2.25rem;
-      }
-    }
-    
-    .about-mentor-content p {
-      color: var(--muted-foreground);
-      margin-bottom: 1rem;
-      font-size: 1.125rem;
-    }
-    
-    /* Section Titles */
-    .section-title {
-      font-size: 1.875rem;
-      font-weight: 700;
-      text-align: center;
-      color: var(--foreground);
-      margin-bottom: 3rem;
-    }
-    
-    @media (min-width: 768px) {
-      .section-title {
-        font-size: 2.25rem;
-      }
-    }
-    
-    .section-subtitle {
-      font-size: 1.125rem;
-      color: var(--muted-foreground);
-      text-align: center;
-      max-width: 42rem;
-      margin: 0 auto 3rem;
-    }
-    
-    /* Career Section */
-    .career {
+
+    section.alt {
       background: var(--secondary);
     }
-    
-    .career-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .career-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .career-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    .career-card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .career-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-    
-    .career-card-icon {
-      width: 3rem;
-      height: 3rem;
-      background: hsla(213, 48%, 28%, 0.1);
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    
-    .career-card-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--primary);
-    }
-    
-    .career-card h3 {
+
+    .section-title {
+      text-align: center;
       font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
+      margin-bottom: 48px;
     }
-    
-    .career-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
+
+    /* Footer */
+    footer {
+      background: var(--primary);
+      color: #fff;
+      padding: 32px 0;
+      text-align: center;
     }
-    
-    /* Experience Section */
-    .experience {
-      background: var(--backgro
+  </style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header-content">
+    <div class="header-logo">Юлия Грошева · Менторинг бизнеса</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Юлия Грошева</h1>
+    <p class="subtitle">Стратегический и операционный менторинг</p>
+    <p class="industries">IT · Telecom · Логистика · Сервисы</p>
+    <a href="#contacts" class="hero-btn">Оставить заявку</a>
+  </div>
+</section>
+
+<section id="contacts" class="alt">
+  <div class="container">
+    <h2 class="section-title">Контакты</h2>
+    <p style="text-align:center">
+      Email: <a href="mailto:julia@grosheva.com">julia@grosheva.com</a><br>
+      LinkedIn: <a href="https://linkedin.com/in/julia-grosheva" target="_blank">linkedin.com/in/julia-grosheva</a>
+    </p>
+  </div>
+</section>
+
+<footer>
+  © 2025 · Юлия Грошева
+</footer>
+
+</body>
+</html>
