@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Стратегический и операционный менторинг | Юлия Грошева</title>
 
-  <meta name="description" content="Стратегический и операционный менторинг для B2B компаний. Масштабирование, операционная эффективность, международная экспансия.">
-  <link rel="canonical" href="https://julia-grosheva.ru/">
+  <meta name="description" content="Стратегический и операционный менторинг для B2B-компаний. Масштабирование, операционная эффективность, международная экспансия.">
+  <link rel="canonical" href="https://jvgro-projects.github.io/julia-grosheva.ru/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +22,11 @@
       --radius: 8px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Open Sans', sans-serif;
@@ -31,7 +35,10 @@
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       max-width: 1200px;
@@ -39,18 +46,20 @@
       padding: 0 16px;
     }
 
-    /* Header */
+    /* ================= HEADER ================= */
+
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
+      height: 64px;
       background: rgba(255,255,255,0.96);
       border-bottom: 1px solid #e6e9ee;
       z-index: 100;
     }
 
-    .header-content {
+    .header-inner {
       height: 64px;
       display: flex;
       align-items: center;
@@ -59,22 +68,58 @@
 
     .header-logo {
       font-weight: 600;
+      font-size: 14px;
     }
 
-    /* Hero */
+    /* ================= HERO ================= */
+
     .hero {
+      position: relative;
       min-height: 100vh;
       padding-top: 64px;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #243f66, #1f2f44);
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .hero-video iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: 120%;
+      transform: translate(-50%, -50%);
+      border: none;
+      opacity: 0.6;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
       background: linear-gradient(
         135deg,
-        #243f66 0%,
-        #1f2f44 100%
+        rgba(36,63,102,0.75),
+        rgba(31,47,68,0.85)
       );
-      color: #fff;
-      text-align: center;
+      z-index: 2;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 720px;
     }
 
     .hero h1 {
@@ -95,7 +140,7 @@
 
     .hero-btn {
       display: inline-block;
-      background: #fff;
+      background: #ffffff;
       color: var(--primary);
       padding: 16px 32px;
       border-radius: var(--radius);
@@ -103,9 +148,12 @@
       transition: opacity 0.2s;
     }
 
-    .hero-btn:hover { opacity: 0.9; }
+    .hero-btn:hover {
+      opacity: 0.9;
+    }
 
-    /* Sections */
+    /* ================= SECTIONS ================= */
+
     section {
       padding: 80px 0;
     }
@@ -120,26 +168,48 @@
       margin-bottom: 48px;
     }
 
-    /* Footer */
+    /* ================= CONTACTS ================= */
+
+    .contacts p {
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    /* ================= FOOTER ================= */
+
     footer {
       background: var(--primary);
-      color: #fff;
+      color: #ffffff;
       padding: 32px 0;
       text-align: center;
+      font-size: 14px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header class="header">
-  <div class="container header-content">
+  <div class="container header-inner">
     <div class="header-logo">Юлия Грошева · Менторинг бизнеса</div>
   </div>
 </header>
 
+<!-- HERO WITH VIDEO -->
 <section class="hero">
-  <div class="container">
+  <div class="hero-video">
+    <iframe
+      src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&modestbranding=1&playsinline=1"
+      allow="autoplay; encrypted-media"
+      title="Background video"
+      referrerpolicy="strict-origin-when-cross-origin"
+    ></iframe>
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
     <h1>Юлия Грошева</h1>
     <p class="subtitle">Стратегический и операционный менторинг</p>
     <p class="industries">IT · Telecom · Логистика · Сервисы</p>
@@ -147,16 +217,21 @@
   </div>
 </section>
 
-<section id="contacts" class="alt">
+<!-- CONTACTS -->
+<section id="contacts" class="contacts alt">
   <div class="container">
     <h2 class="section-title">Контакты</h2>
-    <p style="text-align:center">
-      Email: <a href="mailto:julia@grosheva.com">julia@grosheva.com</a><br>
-      LinkedIn: <a href="https://linkedin.com/in/julia-grosheva" target="_blank">linkedin.com/in/julia-grosheva</a>
+    <p>
+      Email: <a href="mailto:julia@grosheva.com">julia@grosheva.com</a><br><br>
+      LinkedIn:
+      <a href="https://linkedin.com/in/julia-grosheva" target="_blank">
+        linkedin.com/in/julia-grosheva
+      </a>
     </p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   © 2025 · Юлия Грошева
 </footer>
