@@ -1,1619 +1,1202 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Стратегический и операционный менторинг | Юлия Грошева</title>
-  <meta name="description" content="Я - ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент, которые хотят улучшить свою операционную эффективность, масштабироваться на новые рынки.">
-  <meta name="keywords" content="операционная эффективность, построение бизнес-процессов, построение команды, аналитика, дашборды, мотивация команды, менторинг бизнеса">
-  <meta name="author" content="Юлия Грошева">
-  
-  <meta property="og:title" content="Стратегический и операционный менторинг | Юлия Грошева">
-  <meta property="og:description" content="Ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://julia-grosheva.ru/">
-  
-  <link rel="canonical" href="https://julia-grosheva.ru/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    :root {
-      --background: hsl(0, 0%, 100%);
-      --foreground: hsl(213, 35%, 20%);
-      --card: hsl(0, 0%, 100%);
-      --card-foreground: hsl(213, 35%, 20%);
-      --primary: hsl(213, 48%, 28%);
-      --primary-foreground: hsl(0, 0%, 100%);
-      --secondary: hsl(210, 20%, 96%);
-      --secondary-foreground: hsl(213, 35%, 20%);
-      --muted: hsl(210, 20%, 96%);
-      --muted-foreground: hsl(213, 15%, 50%);
-      --border: hsl(214.3, 31.8%, 91.4%);
-      --radius: 0.5rem;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    html {
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: var(--background);
-      color: var(--foreground);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    
-    .container {
-      max-width: 72rem;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-    
-    @media (min-width: 768px) {
-      .container {
-        padding: 0 1.5rem;
-      }
-    }
-    
-    .section-padding {
-      padding: 4rem 0;
-    }
-    
-    @media (min-width: 768px) {
-      .section-padding {
-        padding: 6rem 0;
-      }
-    }
-    
-    /* Header */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 4rem;
-    }
-    
-    .header-logo {
-      font-weight: 600;
-      color: var(--foreground);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .header-logo:hover {
-      color: var(--primary);
-    }
-    
-    .header-nav {
-      display: none;
-      align-items: center;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 1024px) {
-      .header-nav {
-        display: flex;
-      }
-    }
-    
-    .header-nav a {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    
-    .header-nav a:hover {
-      color: var(--primary);
-    }
-    
-    .mobile-menu-btn {
-      display: block;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-    }
-    
-    @media (min-width: 1024px) {
-      .mobile-menu-btn {
-        display: none;
-      }
-    }
-    
-    .mobile-nav {
-      display: none;
-      padding: 1rem 0;
-      border-top: 1px solid var(--border);
-    }
-    
-    .mobile-nav.active {
-      display: block;
-    }
-    
-    .mobile-nav a {
-      display: block;
-      padding: 0.5rem 0;
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      text-decoration: none;
-    }
-    
-    /* Hero Section */
-    .hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    
-    .hero-video-wrapper {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-    
-    .hero-video-wrapper iframe {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300%;
-      height: 300%;
-      min-width: 100%;
-      min-height: 100%;
-      border: none;
-    }
-    
-    @media (min-width: 768px) {
-      .hero-video-wrapper iframe {
-        width: 180%;
-        height: 180%;
-      }
-    }
-    
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, hsla(213, 48%, 28%, 0.7), hsla(213, 48%, 28%, 0.5));
-    }
-    
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      text-align: center;
-      color: var(--primary-foreground);
-      padding: 0 1rem;
-    }
-    
-    .hero-content h1 {
-      font-size: 2.25rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      animation: fadeIn 0.6s ease-out;
-    }
-    
-    @media (min-width: 768px) {
-      .hero-content h1 {
-        font-size: 3rem;
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .hero-content h1 {
-        font-size: 3.75rem;
-      }
-    }
-    
-    .hero-content .subtitle {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-      animation: fadeIn 0.6s ease-out 0.1s both;
-    }
-    
-    @media (min-width: 768px) {
-      .hero-content .subtitle {
-        font-size: 1.5rem;
-      }
-    }
-    
-    .hero-content .industries {
-      font-size: 1.125rem;
-      margin-bottom: 2.5rem;
-      opacity: 0.8;
-      animation: fadeIn 0.6s ease-out 0.2s both;
-    }
-    
-    .hero-btn {
-      display: inline-block;
-      background: var(--primary-foreground);
-      color: var(--primary);
-      padding: 1rem 2rem;
-      font-size: 1.125rem;
-      font-weight: 600;
-      border: none;
-      border-radius: var(--radius);
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.3s;
-      animation: fadeIn 0.6s ease-out 0.3s both;
-    }
-    
-    .hero-btn:hover {
-      opacity: 0.9;
-    }
-    
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      animation: bounce 1s infinite;
-    }
-    
-    .scroll-indicator-inner {
-      width: 1.5rem;
-      height: 2.5rem;
-      border: 2px solid rgba(255, 255, 255, 0.5);
-      border-radius: 9999px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-top: 0.5rem;
-    }
-    
-    .scroll-indicator-dot {
-      width: 0.375rem;
-      height: 0.75rem;
-      background: rgba(255, 255, 255, 0.5);
-      border-radius: 9999px;
-    }
-    
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0);
-      }
-      50% {
-        transform: translateX(-50%) translateY(-10px);
-      }
-    }
-    
-    /* About Mentor Section */
-    .about-mentor {
-      background: var(--background);
-    }
-    
-    .about-mentor-grid {
-      display: grid;
-      gap: 3rem;
-      align-items: center;
-    }
-    
-    @media (min-width: 1024px) {
-      .about-mentor-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-    
-    .about-mentor-image {
-      position: relative;
-    }
-    
-    .about-mentor-image img {
-      width: 100%;
-      border-radius: 1rem;
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
-    
-    .about-mentor-content h2 {
-      font-size: 1.875rem;
-      font-weight: 700;
-      color: var(--foreground);
-      margin-bottom: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .about-mentor-content h2 {
-        font-size: 2.25rem;
-      }
-    }
-    
-    .about-mentor-content p {
-      color: var(--muted-foreground);
-      margin-bottom: 1rem;
-      font-size: 1.125rem;
-    }
-    
-    /* Section Titles */
-    .section-title {
-      font-size: 1.875rem;
-      font-weight: 700;
-      text-align: center;
-      color: var(--foreground);
-      margin-bottom: 3rem;
-    }
-    
-    @media (min-width: 768px) {
-      .section-title {
-        font-size: 2.25rem;
-      }
-    }
-    
-    .section-subtitle {
-      font-size: 1.125rem;
-      color: var(--muted-foreground);
-      text-align: center;
-      max-width: 42rem;
-      margin: 0 auto 3rem;
-    }
-    
-    /* Career Section */
-    .career {
-      background: var(--secondary);
-    }
-    
-    .career-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .career-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .career-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    .career-card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .career-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-    
-    .career-card-icon {
-      width: 3rem;
-      height: 3rem;
-      background: hsla(213, 48%, 28%, 0.1);
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1rem;
-    }
-    
-    .career-card-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--primary);
-    }
-    
-    .career-card h3 {
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 0.5rem;
-    }
-    
-    .career-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-    }
-    
-    /* Experience Section */
-    .experience {
-      background: var(--background);
-    }
-    
-    .experience-content {
-      max-width: 48rem;
-      margin: 0 auto;
-    }
-    
-    .experience-content p {
-      color: var(--muted-foreground);
-      font-size: 1.125rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.8;
-    }
-    
-    /* Projects Section */
-    .projects {
-      background: var(--secondary);
-    }
-    
-    .projects-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .projects-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .project-card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 2rem;
-      border-left: 4px solid var(--primary);
-      transition: all 0.3s;
-    }
-    
-    .project-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-    
-    .project-card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.75rem;
-    }
-    
-    .project-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-    }
-    
-    /* Publications Section */
-    .publications {
-      background: var(--background);
-    }
-    
-    .publications-grid {
-      display: grid;
-      gap: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .publications-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    .publication-card {
-      background: var(--card);
-      border-radius: 1rem;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .publication-card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      transform: translateY(-4px);
-    }
-    
-    .publication-card img {
-      width: 100%;
-      height: 12rem;
-      object-fit: cover;
-    }
-    
-    .publication-card-content {
-      padding: 1.5rem;
-    }
-    
-    .publication-card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.5rem;
-    }
-    
-    .publication-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      margin-bottom: 1rem;
-    }
-    
-    .publication-card a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.875rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      transition: gap 0.3s;
-    }
-    
-    .publication-card a:hover {
-      gap: 0.5rem;
-    }
-    
-    /* Topics Section */
-    .topics {
-      background: var(--secondary);
-    }
-    
-    .topics-grid {
-      display: grid;
-      gap: 1rem;
-    }
-    
-    @media (min-width: 768px) {
-      .topics-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    .topic-card {
-      background: var(--card);
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      transition: all 0.3s;
-    }
-    
-    .topic-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .topic-card-number {
-      width: 2.5rem;
-      height: 2.5rem;
-      background: var(--primary);
-      color: var(--primary-foreground);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 600;
-      flex-shrink: 0;
-    }
-    
-    .topic-card p {
-      color: var(--foreground);
-      font-size: 0.9375rem;
-    }
-    
-    /* Why Mentoring Section */
-    .why-mentoring {
-      background: var(--background);
-    }
-    
-    .why-mentoring-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .why-mentoring-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .why-mentoring-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    .why-card {
-      text-align: center;
-      padding: 2rem;
-    }
-    
-    .why-card-icon {
-      width: 4rem;
-      height: 4rem;
-      background: linear-gradient(135deg, var(--primary), hsla(213, 48%, 40%, 1));
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.25rem;
-      box-shadow: 0 10px 25px hsla(213, 48%, 28%, 0.2);
-    }
-    
-    .why-card-icon svg {
-      width: 2rem;
-      height: 2rem;
-      color: var(--primary-foreground);
-    }
-    
-    .why-card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.75rem;
-    }
-    
-    .why-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-    }
-    
-    /* For Whom Section */
-    .for-whom {
-      background: var(--secondary);
-    }
-    
-    .for-whom-grid {
-      display: grid;
-      gap: 1.5rem;
-      margin-bottom: 5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .for-whom-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .for-whom-card {
-      position: relative;
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-      border: 1px solid hsla(214.3, 31.8%, 91.4%, 0.5);
-    }
-    
-    .for-whom-card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      transform: translateY(-4px);
-    }
-    
-    .for-whom-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), hsla(213, 48%, 28%, 0.5));
-      border-radius: 1rem 1rem 0 0;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    
-    .for-whom-card:hover::before {
-      opacity: 1;
-    }
-    
-    .for-whom-card-icon {
-      width: 3.5rem;
-      height: 3.5rem;
-      background: hsla(213, 48%, 28%, 0.1);
-      border-radius: 0.75rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      transition: background 0.3s;
-    }
-    
-    .for-whom-card:hover .for-whom-card-icon {
-      background: hsla(213, 48%, 28%, 0.2);
-    }
-    
-    .for-whom-card-icon svg {
-      width: 1.75rem;
-      height: 1.75rem;
-      color: var(--primary);
-    }
-    
-    .for-whom-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.5rem;
-    }
-    
-    .for-whom-card p {
-      color: var(--muted-foreground);
-    }
-    
-    /* Strengths */
-    .strengths {
-      position: relative;
-      background: linear-gradient(90deg, hsla(213, 48%, 28%, 0.05), hsla(213, 48%, 28%, 0.1), hsla(213, 48%, 28%, 0.05));
-      border-radius: 1.5rem;
-      padding: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .strengths {
-        padding: 3rem;
-      }
-    }
-    
-    .strengths-inner {
-      background: hsla(0, 0%, 100%, 0.8);
-      backdrop-filter: blur(8px);
-      border-radius: 1.5rem;
-      padding: 2rem;
-      border: 1px solid hsla(214.3, 31.8%, 91.4%, 0.5);
-    }
-    
-    @media (min-width: 768px) {
-      .strengths-inner {
-        padding: 3rem;
-      }
-    }
-    
-    .strengths h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--foreground);
-      text-align: center;
-      margin-bottom: 2.5rem;
-    }
-    
-    @media (min-width: 768px) {
-      .strengths h3 {
-        font-size: 1.875rem;
-      }
-    }
-    
-    .strengths-grid {
-      display: grid;
-      gap: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .strengths-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .strength-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    
-    .strength-item-icon {
-      width: 4rem;
-      height: 4rem;
-      background: linear-gradient(135deg, var(--primary), hsla(213, 48%, 35%, 1));
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 10px 25px hsla(213, 48%, 28%, 0.2);
-    }
-    
-    .strength-item-icon svg {
-      width: 2rem;
-      height: 2rem;
-      color: var(--primary-foreground);
-    }
-    
-    .strength-item h4 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.75rem;
-    }
-    
-    .strength-item p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      line-height: 1.6;
-    }
-    
-    /* Facts Section */
-    .facts {
-      background: var(--background);
-    }
-    
-    .facts-grid {
-      display: grid;
-      gap: 1.5rem;
-    }
-    
-    @media (min-width: 640px) {
-      .facts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .facts-grid {
-        grid-template-columns: repeat(5, 1fr);
-      }
-    }
-    
-    .fact-card {
-      background: var(--secondary);
-      border-radius: 0.75rem;
-      padding: 1.5rem;
-      text-align: center;
-      transition: all 0.3s;
-    }
-    
-    .fact-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    }
-    
-    .fact-card-icon {
-      width: 3rem;
-      height: 3rem;
-      background: hsla(213, 48%, 28%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
-    
-    .fact-card-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--primary);
-    }
-    
-    .fact-card p {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: var(--foreground);
-    }
-    
-    /* Services Section */
-    .services {
-      background: var(--secondary);
-    }
-    
-    .services-grid {
-      display: grid;
-      gap: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .services-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-    
-    .service-card {
-      background: var(--card);
-      border-radius: 1.5rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .service-card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-      transform: translateY(-4px);
-    }
-    
-    .service-card-icon {
-      width: 4rem;
-      height: 4rem;
-      background: linear-gradient(135deg, var(--primary), hsla(213, 48%, 40%, 1));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.5rem;
-    }
-    
-    .service-card-icon svg {
-      width: 2rem;
-      height: 2rem;
-      color: var(--primary-foreground);
-    }
-    
-    .service-card h3 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 1rem;
-    }
-    
-    .service-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-      margin-bottom: 1.5rem;
-    }
-    
-    .service-card .price {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
-    }
-    
-    /* How It Works Section */
-    .how-it-works {
-      background: var(--background);
-    }
-    
-    .steps-grid {
-      display: grid;
-      gap: 2rem;
-    }
-    
-    @media (min-width: 768px) {
-      .steps-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    @media (min-width: 1024px) {
-      .steps-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-    }
-    
-    .step-card {
-      text-align: center;
-      padding: 1.5rem;
-    }
-    
-    .step-number {
-      width: 3rem;
-      height: 3rem;
-      background: var(--primary);
-      color: var(--primary-foreground);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin: 0 auto 1.25rem;
-    }
-    
-    .step-card h3 {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.75rem;
-    }
-    
-    .step-card p {
-      font-size: 0.875rem;
-      color: var(--muted-foreground);
-    }
-    
-    /* Contacts Section */
-    .contacts {
-      background: var(--secondary);
-    }
-    
-    .contacts-grid {
-      display: grid;
-      gap: 2rem;
-      max-width: 48rem;
-      margin: 0 auto;
-    }
-    
-    @media (min-width: 768px) {
-      .contacts-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    
-    .contact-card {
-      background: var(--card);
-      border-radius: 1rem;
-      padding: 2rem;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s;
-    }
-    
-    .contact-card:hover {
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      transform: translateY(-4px);
-    }
-    
-    .contact-card-icon {
-      width: 3rem;
-      height: 3rem;
-      background: hsla(213, 48%, 28%, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
-    
-    .contact-card-icon svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      color: var(--primary);
-    }
-    
-    .contact-card h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--foreground);
-      margin-bottom: 0.5rem;
-    }
-    
-    .contact-card a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 500;
-      transition: opacity 0.3s;
-    }
-    
-    .contact-card a:hover {
-      opacity: 0.8;
-    }
-    
-    /* Footer */
-    .footer {
-      background: var(--primary);
-      color: var(--primary-foreground);
-      padding: 2rem 0;
-    }
-    
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    
-    @media (min-width: 768px) {
-      .footer-content {
-        flex-direction: row;
-      }
-    }
-    
-    .footer a {
-      color: var(--primary-foreground);
-      text-decoration: none;
-      opacity: 0.8;
-      transition: opacity 0.3s;
-    }
-    
-    .footer a:hover {
-      opacity: 1;
-    }
-    
-    .footer-link {
-      font-size: 0.875rem;
-    }
-    
-    /* SVG Icons */
-    .icon {
-      display: inline-block;
-      vertical-align: middle;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Стратегический и операционный менторинг | Юлия Грошева</title>
+    <meta name="description" content="Я - ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент, которые хотят улучшить свою операционную эффективность, масштабироваться на новые рынки.">
+    <meta name="keywords" content="операционная эффективность, построение бизнес-процессов, построение команды, аналитика, дашборды, мотивация команды, менторинг бизнеса">
+    <meta name="author" content="Юлия Грошева">
+    
+    <meta property="og:title" content="Стратегический и операционный менторинг | Юлия Грошева">
+    <meta property="og:description" content="Ментор работающий с технологическими и сервисными компаниями, ориентированными на B2B сегмент">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://julia-grosheva.ru/">
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png">
+    
+    <link rel="canonical" href="https://julia-grosheva.ru/">
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: 220 25% 25%;
+            --primary-foreground: 0 0% 100%;
+            --secondary: 220 15% 92%;
+            --secondary-foreground: 220 25% 20%;
+            --accent: 35 60% 50%;
+            --accent-foreground: 0 0% 100%;
+            --background: 0 0% 100%;
+            --foreground: 220 25% 15%;
+            --muted: 220 15% 96%;
+            --muted-foreground: 220 15% 45%;
+            --border: 220 15% 88%;
+            --card: 0 0% 100%;
+            --card-foreground: 220 25% 15%;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: hsl(var(--foreground));
+            background: hsl(var(--background));
+            line-height: 1.6;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: hsla(var(--background), 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid hsl(var(--border));
+            transition: all 0.3s ease;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: hsl(var(--primary));
+            text-decoration: none;
+        }
+        .nav {
+            display: flex;
+            gap: 32px;
+        }
+        .nav a {
+            color: hsl(var(--foreground));
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav a:hover {
+            color: hsl(var(--accent));
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: hsl(var(--foreground));
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180%;
+            height: 180%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                hsla(var(--primary), 0.7) 0%,
+                hsla(var(--primary), 0.5) 50%,
+                hsla(var(--primary), 0.8) 100%
+            );
+        }
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: hsl(var(--accent));
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background: hsl(35 60% 45%);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+        }
+        .btn-outline:hover {
+            background: white;
+            color: hsl(var(--primary));
+        }
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+        .section-dark {
+            background: hsl(var(--primary));
+            color: white;
+        }
+        .section-muted {
+            background: hsl(var(--muted));
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            text-align: center;
+            margin-bottom: 60px;
+            color: hsl(var(--primary));
+        }
+        .section-dark .section-title {
+            color: white;
+        }
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+            color: hsl(var(--primary));
+        }
+        .about-content p {
+            margin-bottom: 20px;
+            color: hsl(var(--muted-foreground));
+        }
+        /* Facts Section */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .fact-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .fact-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: hsl(var(--accent));
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 8px;
+        }
+        .fact-label {
+            font-size: 0.9rem;
+            color: hsl(var(--muted-foreground));
+        }
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            padding: 40px 30px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: hsl(var(--accent) / 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: hsl(var(--accent));
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+            color: hsl(var(--primary));
+        }
+        .service-card p {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.95rem;
+        }
+        /* Experience Section */
+        .experience-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .experience-item {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid hsl(var(--border));
+        }
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+        .experience-logo {
+            width: 80px;
+            height: 80px;
+            flex-shrink: 0;
+            background: hsl(var(--muted));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .experience-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+        .experience-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            color: hsl(var(--primary));
+        }
+        .experience-role {
+            color: hsl(var(--accent));
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .experience-period {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .experience-description {
+            color: hsl(var(--muted-foreground));
+        }
+        /* For Whom Section */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .audience-card {
+            padding: 40px 30px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .audience-icon {
+            width: 80px;
+            height: 80px;
+            background: hsl(var(--accent) / 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: hsl(var(--accent));
+            font-size: 2rem;
+        }
+        .audience-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: hsl(var(--primary));
+        }
+        .audience-card p {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.95rem;
+        }
+        /* How It Works */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: hsl(var(--border));
+        }
+        .step {
+            text-align: center;
+            position: relative;
+            flex: 1;
+            padding: 0 15px;
+        }
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: hsl(var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 1;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: hsl(var(--primary));
+        }
+        .step p {
+            font-size: 0.9rem;
+            color: hsl(var(--muted-foreground));
+        }
+        /* Topics Accordion */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .accordion-item {
+            border: 1px solid hsl(var(--border));
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 20px 24px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: hsl(var(--primary));
+            transition: background 0.2s;
+        }
+        .accordion-header:hover {
+            background: hsl(var(--muted));
+        }
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+        .accordion-item.open .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            display: none;
+            padding: 0 24px 20px;
+            color: hsl(var(--muted-foreground));
+        }
+        .accordion-item.open .accordion-content {
+            display: block;
+        }
+        /* Why Mentoring */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .benefit-item {
+            display: flex;
+            gap: 20px;
+        }
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: hsl(var(--accent) / 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: hsl(var(--accent));
+        }
+        .benefit-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: hsl(var(--primary));
+        }
+        .benefit-content p {
+            color: hsl(var(--muted-foreground));
+            font-size: 0.95rem;
+        }
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 24px;
+        }
+        .contact-info p {
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .contact-link:hover {
+            opacity: 1;
+        }
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: hsl(var(--foreground));
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid hsl(var(--border));
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: hsl(var(--accent));
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn {
+            width: 100%;
+        }
+        /* Footer */
+        .footer {
+            background: hsl(var(--primary));
+            color: white;
+            padding: 60px 0 30px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 30px;
+            border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+            margin-bottom: 30px;
+        }
+        .footer-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        .footer-social {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: hsla(0, 0%, 100%, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .footer-social a:hover {
+            background: hsl(var(--accent));
+        }
+        .footer-bottom {
+            text-align: center;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal.open {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: hsl(var(--muted-foreground));
+        }
+        .modal h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: hsl(var(--primary));
+        }
+        .modal p {
+            color: hsl(var(--muted-foreground));
+            margin-bottom: 24px;
+        }
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-video {
+                width: 140%;
+                height: 140%;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .nav.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 20px;
+                gap: 16px;
+                border-bottom: 1px solid hsl(var(--border));
+            }
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .facts-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-grid,
+            .audience-grid {
+                grid-template-columns: 1fr;
+            }
+            .steps-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .steps-container::before {
+                display: none;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .experience-logo {
+                width: 60px;
+                height: 60px;
+            }
+        }
+        @media (max-width: 480px) {
+            .facts-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header class="header">
-    <nav class="container">
-      <div class="header-content">
-        <a href="#" class="header-logo">Юлия Грошева. Менторинг бизнеса</a>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="#" class="logo">Юлия Грошева</a>
+            <nav class="nav" id="nav">
+                <a href="#about">Обо мне</a>
+                <a href="#services">Услуги</a>
+                <a href="#experience">Опыт</a>
+                <a href="#topics">Темы</a>
+                <a href="#contact">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="menuBtn" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-video-container">
+            <video class="hero-video" autoplay muted loop playsinline>
+                <source src="videos/hero-bg.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Стратегический и операционный менторинг</h1>
+            <p>Помогаю технологическим и сервисным B2B-компаниям улучшить операционную эффективность, построить сильные команды и масштабироваться на новые рынки</p>
+            <a href="#contact" class="btn">Записаться на консультацию</a>
+        </div>
+    </section>
+    <!-- Facts Section -->
+    <section class="section section-muted" id="facts">
+        <div class="container">
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-number">16+</div>
+                    <div class="fact-label">Лет в бизнесе</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">50+</div>
+                    <div class="fact-label">Успешных проектов</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">100+</div>
+                    <div class="fact-label">Часов менторинга</div>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-number">5</div>
+                    <div class="fact-label">Индустрий</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">О менторе</h2>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop" alt="Юлия Грошева">
+                </div>
+                <div class="about-content">
+                    <h2>Юлия Грошева</h2>
+                    <p>Я — ментор с 16-летним опытом в сфере операционного управления. Работаю с технологическими и сервисными компаниями, ориентированными на B2B сегмент.</p>
+                    <p>Моя специализация — помощь бизнесам в построении эффективных процессов, формировании сильных команд и масштабировании на новые рынки.</p>
+                    <p>Прошла путь от специалиста до CEO, работала в компаниях разного масштаба — от стартапов до крупных корпораций. Этот опыт позволяет мне понимать вызовы, с которыми сталкиваются предприниматели на каждом этапе развития бизнеса.</p>
+                    <a href="#contact" class="btn">Связаться со мной</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="section section-muted" id="services">
+        <div class="container">
+            <h2 class="section-title">Чем я могу помочь</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10M18 20V4M6 20v-4"/>
+                        </svg>
+                    </div>
+                    <h3>Операционная эффективность</h3>
+                    <p>Анализ и оптимизация бизнес-процессов, внедрение системы KPI, построение дашбордов для принятия решений на основе данных.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h3>Построение команды</h3>
+                    <p>Формирование организационной структуры, найм ключевых специалистов, создание системы мотивации и развития сотрудников.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </div>
+                    <h3>Масштабирование</h3>
+                    <p>Стратегия выхода на новые рынки, адаптация продукта под локальные требования, построение партнерской сети.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Профессиональный опыт</h2>
+            <div class="experience-list">
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="hsl(220, 25%, 25%)" opacity="0.7">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        </svg>
+                    </div>
+                    <div class="experience-content">
+                        <h3>TechCorp International</h3>
+                        <div class="experience-role">CEO / Генеральный директор</div>
+                        <div class="experience-period">2020 — настоящее время</div>
+                        <p class="experience-description">Руководство компанией с оборотом $50M+. Вывод на 3 новых рынка. Рост команды с 50 до 200 человек.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="hsl(220, 25%, 25%)" opacity="0.7">
+                            <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                            <polyline points="2 17 12 22 22 17"/>
+                            <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                    </div>
+                    <div class="experience-content">
+                        <h3>Digital Solutions Group</h3>
+                        <div class="experience-role">COO / Операционный директор</div>
+                        <div class="experience-period">2016 — 2020</div>
+                        <p class="experience-description">Построение операционных процессов с нуля. Внедрение OKR системы. Оптимизация затрат на 30%.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="hsl(220, 25%, 25%)" opacity="0.7">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2" stroke="white" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <div class="experience-content">
+                        <h3>StartUp Ventures</h3>
+                        <div class="experience-role">Head of Operations</div>
+                        <div class="experience-period">2012 — 2016</div>
+                        <p class="experience-description">Масштабирование стартапа от seed-стадии до Series B. Построение команды с 5 до 50 человек.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- For Whom Section -->
+    <section class="section section-muted" id="audience">
+        <div class="container">
+            <h2 class="section-title">Для кого менторинг</h2>
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="audience-icon">👤</div>
+                    <h3>Основатели стартапов</h3>
+                    <p>Которые хотят построить устойчивый бизнес и избежать типичных ошибок роста</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">👔</div>
+                    <h3>CEO и топ-менеджеры</h3>
+                    <p>Которым нужен взгляд со стороны для принятия стратегических решений</p>
+                </div>
+                <div class="audience-card">
+                    <div class="audience-icon">📈</div>
+                    <h3>Руководители направлений</h3>
+                    <p>Которые хотят вывести свои команды на новый уровень эффективности</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works -->
+    <section class="section" id="how">
+        <div class="container">
+            <h2 class="section-title">Как проходит работа</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Знакомство</h3>
+                    <p>Бесплатная 30-минутная консультация</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Диагностика</h3>
+                    <p>Анализ текущей ситуации</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>План действий</h3>
+                    <p>Формирование roadmap</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Работа</h3>
+                    <p>Регулярные сессии и поддержка</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Результат</h3>
+                    <p>Достижение целей</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Topics Section -->
+    <section class="section section-muted" id="topics">
+        <div class="container">
+            <h2 class="section-title">Темы для выступлений</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Операционная эффективность в B2B</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Как построить процессы, которые масштабируются вместе с бизнесом. Практические инструменты и метрики для оценки эффективности.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Построение data-driven культуры</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>От интуитивных решений к решениям на основе данных. Как внедрить аналитику в повседневную работу команды.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Масштабирование команды без потери качества</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Как сохранить культуру и качество при быстром росте. Системы найма, адаптации и развития сотрудников.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <span>Выход на международные рынки</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Стратегия и тактика международной экспансии. Адаптация продукта, построение локальных команд, работа с партнерами.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Why Mentoring -->
+    <section class="section" id="why">
+        <div class="container">
+            <h2 class="section-title">Почему менторинг работает</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Экономия времени</h3>
+                        <p>Избегайте ошибок, которые я уже совершила. Сократите путь к результату в разы.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Взгляд со стороны</h3>
+                        <p>Свежая перспектива помогает увидеть решения, которые не видны изнутри.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Практический опыт</h3>
+                        <p>Не теория, а проверенные решения из реальных бизнес-кейсов.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <div class="benefit-content">
+                        <h3>Поддержка</h3>
+                        <p>Постоянная связь и помощь в принятии сложных решений.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="section section-dark" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Давайте обсудим ваш проект</h2>
+                    <p>Заполните форму или свяжитесь со мной напрямую. Первая консультация — бесплатно.</p>
+                    <div class="contact-links">
+                        <a href="mailto:julia@grosheva.ru" class="contact-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                            julia@grosheva.ru
+                        </a>
+                        <a href="https://t.me/juliagrosheva" class="contact-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"/>
+                            </svg>
+                            @juliagrosheva
+                        </a>
+                        <a href="https://linkedin.com/in/juliagrosheva" class="contact-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required placeholder="Как вас зовут?">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" required placeholder="Расскажите о вашей задаче..."></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Юлия Грошева</div>
+                <div class="footer-social">
+                    <a href="https://t.me/juliagrosheva" aria-label="Telegram">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.099.154.232.17.325.015.093.034.305.019.471z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/juliagrosheva" aria-label="LinkedIn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Юлия Грошева. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2>Спасибо за заявку!</h2>
+            <p>Я свяжусь с вами в ближайшее время для обсуждения деталей.</p>
+            <button class="btn" onclick="closeModal()">Закрыть</button>
+        </div>
+    </div>
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const nav = document.getElementById('nav');
         
-        <div class="header-nav">
-          <a href="#experience">Мой опыт</a>
-          <a href="#publications">Публикации</a>
-          <a href="#for-whom">Для кого</a>
-          <a href="#about">Обо мне</a>
-          <a href="#how-it-works">Как это работает</a>
-          <a href="#contacts">Контакты</a>
-          <a href="#topics">Темы для выступлений</a>
-        </div>
+        menuBtn.addEventListener('click', () => {
+            nav.classList.toggle('open');
+        });
+        // Close menu on link click
+        nav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+            });
+        });
+        // Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                const isOpen = item.classList.contains('open');
+                
+                // Close all
+                document.querySelectorAll('.accordion-item').forEach(i => {
+                    i.classList.remove('open');
+                });
+                
+                // Open clicked if wasn't open
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const modal = document.getElementById('modal');
         
-        <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Меню">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="mobile-nav" id="mobileNav">
-        <a href="#experience">Мой опыт</a>
-        <a href="#publications">Публикации</a>
-        <a href="#for-whom">Для кого</a>
-        <a href="#about">Обо мне</a>
-        <a href="#how-it-works">Как это работает</a>
-        <a href="#contacts">Контакты</a>
-        <a href="#topics">Темы для выступлений</a>
-      </div>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-video-wrapper">
-      <iframe 
-        src="https://www.youtube.com/embed/HuMvjEMNJJ4?autoplay=1&mute=1&loop=1&playlist=HuMvjEMNJJ4&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&fs=0&iv_load_policy=3"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        title="Background video">
-      </iframe>
-    </div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <h1>Юлия Грошева</h1>
-      <p class="subtitle">Стратегический и операционный менторинг</p>
-      <p class="industries">IT / Телекоммуникации / Логистика / Услуги</p>
-      <a href="#contacts" class="hero-btn">Оставить заявку</a>
-    </div>
-    <div class="scroll-indicator">
-      <div class="scroll-indicator-inner">
-        <div class="scroll-indicator-dot"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Mentor Section -->
-  <section class="about-mentor section-padding">
-    <div class="container">
-      <div class="about-mentor-grid">
-        <div class="about-mentor-image">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=700&fit=crop" alt="Юлия Грошева">
-        </div>
-        <div class="about-mentor-content">
-          <h2>О менторе</h2>
-          <p>Привет! Я — Юлия Грошева, ментор для руководителей и собственников бизнеса в сфере технологий и услуг.</p>
-          <p>Более 15 лет я работала на руководящих позициях в международных компаниях, управляя финансами, юридическими вопросами, HR и операционными процессами.</p>
-          <p>Сейчас я помогаю предпринимателям и топ-менеджерам масштабировать бизнес, выходить на новые рынки и повышать операционную эффективность.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Career Section -->
-  <section class="career section-padding">
-    <div class="container">
-      <h2 class="section-title">Карьера в цифрах</h2>
-      <div class="career-grid">
-        <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4m8-4v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
-          </div>
-          <h3>15+</h3>
-          <p>лет на руководящих позициях</p>
-        </div>
-        <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-          </div>
-          <h3>30+</h3>
-          <p>стран присутствия компаний</p>
-        </div>
-        <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>2000+</h3>
-          <p>сотрудников в управлении</p>
-        </div>
-        <div class="career-card">
-          <div class="career-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-          <h3>$150M+</h3>
-          <p>оборот компаний</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience Section -->
-  <section id="experience" class="experience section-padding">
-    <div class="container">
-      <h2 class="section-title">Профессиональный опыт</h2>
-      <div class="experience-content">
-        <p>Более 15 лет я работала на руководящих позициях в международных компаниях. За этот период у меня было много больших проектов, связанных с открытием компаний и банковских счетов для них во многих юрисдикциях с международным корпоративным структурированием и масштабированием процессов при выходе на новые рынки, а также по подготовке к IPO, M&A и прохождению DD.</p>
-        <p>Я хорошо разбираюсь в операционной эффективности финансовых, юридических, sales, HR, TnD процессов, глубоком анализе и визуализации данных.</p>
-        <p>Отдельно можно остановиться на моей экспертизе в создании международных центров обслуживания бизнеса (ОЦО/SSC), внедрении корпоративных бизнес-систем и процессов глобального масштаба и в стратегических вопросах развития отдельных направлений бизнеса.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="projects section-padding">
-    <div class="container">
-      <h2 class="section-title">Ключевые проекты</h2>
-      <div class="projects-grid">
-        <div class="project-card">
-          <h3>Международная экспансия</h3>
-          <p>Открытие компаний и банковских счетов в 30+ юрисдикциях</p>
-        </div>
-        <div class="project-card">
-          <h3>Подготовка к IPO</h3>
-          <p>Комплексная подготовка компании к публичному размещению акций</p>
-        </div>
-        <div class="project-card">
-          <h3>M&A сделки</h3>
-          <p>Сопровождение сделок слияния и поглощения</p>
-        </div>
-        <div class="project-card">
-          <h3>Создание ОЦО/SSC</h3>
-          <p>Построение международных центров обслуживания бизнеса</p>
-        </div>
-        <div class="project-card">
-          <h3>Due Diligence</h3>
-          <p>Организация и прохождение комплексной проверки</p>
-        </div>
-        <div class="project-card">
-          <h3>Цифровая трансформация</h3>
-          <p>Внедрение корпоративных систем и автоматизация процессов</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Publications Section -->
-  <section id="publications" class="publications section-padding">
-    <div class="container">
-      <h2 class="section-title">Публикации</h2>
-      <div class="publications-grid">
-        <div class="publication-card">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=300&fit=crop" alt="Агроэксперт">
-          <div class="publication-card-content">
-            <h3>Как построить эффективную систему KPI</h3>
-            <p>Практические рекомендации по внедрению системы ключевых показателей эффективности</p>
-            <a href="#">Читать статью →</a>
-          </div>
-        </div>
-        <div class="publication-card">
-          <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=300&fit=crop" alt="HR Tech Club">
-          <div class="publication-card-content">
-            <h3>Менторинг как инструмент развития лидеров</h3>
-            <p>Почему менторинг становится ключевым инструментом развития топ-менеджеров</p>
-            <a href="#">Читать статью →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Topics Section -->
-  <section id="topics" class="topics section-padding">
-    <div class="container">
-      <h2 class="section-title">Темы для выступлений</h2>
-      <div class="topics-grid">
-        <div class="topic-card">
-          <div class="topic-card-number">1</div>
-          <p>Операционная эффективность: как оптимизировать процессы и сократить издержки</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">2</div>
-          <p>Международная экспансия: практические аспекты выхода на новые рынки</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">3</div>
-          <p>Построение эффективных команд: от найма до мотивации</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">4</div>
-          <p>Data-driven подход: как внедрить культуру принятия решений на основе данных</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">5</div>
-          <p>Создание ОЦО/SSC: от концепции до реализации</p>
-        </div>
-        <div class="topic-card">
-          <div class="topic-card-number">6</div>
-          <p>Подготовка к M&A и IPO: что нужно знать руководителю</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Mentoring Section -->
-  <section class="why-mentoring section-padding">
-    <div class="container">
-      <h2 class="section-title">Почему менторинг?</h2>
-      <div class="why-mentoring-grid">
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
-          </div>
-          <h3>Экономия времени</h3>
-          <p>Не нужно набивать шишки самому — учитесь на чужом опыте</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3>Системный подход</h3>
-          <p>Структурированные методологии вместо хаотичных действий</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
-          </div>
-          <h3>Проверенные решения</h3>
-          <p>Работающие инструменты и практики из реального бизнеса</p>
-        </div>
-        <div class="why-card">
-          <div class="why-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Нетворкинг</h3>
-          <p>Доступ к сети контактов и экспертизе из разных индустрий</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- For Whom Section -->
-  <section id="for-whom" class="for-whom section-padding">
-    <div class="container">
-      <h2 class="section-title">Кому будет полезно со мной поработать</h2>
-      <p class="section-subtitle">Помогаю руководителям и компаниям достигать операционного совершенства</p>
-      
-      <div class="for-whom-grid">
-        <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Топ-менеджмент</h3>
-          <p>CEO, CFO, COO, HRD, Head of Legal</p>
-        </div>
-        <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-          </div>
-          <h3>Размер компании</h3>
-          <p>Оборот 10-150 млн $, штат 50-2000 человек</p>
-        </div>
-        <div class="for-whom-card">
-          <div class="for-whom-card-icon">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-          </div>
-          <h3>Сферы</h3>
-          <p>IT, Telecom, Услуги, Логистика, ОЦО/SSC</p>
-        </div>
-      </div>
-      
-      <div class="strengths">
-        <div class="strengths-inner">
-          <h3>Мои сильные стороны</h3>
-          <div class="strengths-grid">
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              </div>
-              <h4>Международная экспансия</h4>
-              <p>Операционная поддержка выхода на международные рынки: финансы, юридическое сопровождение, найм</p>
-            </div>
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-              </div>
-              <h4>Операционная эффективность</h4>
-              <p>Организация процессов, построение ОЦО/SSC, решение проблем кросс-функционального взаимодействия</p>
-            </div>
-            <div class="strength-item">
-              <div class="strength-item-icon">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </div>
-              <h4>Визуализация и аналитика</h4>
-              <p>Построение системы дашбордов, найм эффективных лидеров и команд</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Facts Section -->
-  <section id="about" class="facts section-padding">
-    <div class="container">
-      <h2 class="section-title">Факты обо мне</h2>
-      <div class="facts-grid">
-        <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <p>Позитивное мышление и открытость</p>
-        </div>
-        <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <p>Люблю знакомиться с людьми из разных отраслей и профессий</p>
-        </div>
-        <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          </div>
-          <p>Получаю большое удовольствие от решения бизнесовых и жизненных головоломок</p>
-        </div>
-        <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
-          </div>
-          <p>Быстро и с удовольствием погружаюсь в новые задачи и проекты</p>
-        </div>
-        <div class="fact-card">
-          <div class="fact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-          </div>
-          <p>Мыслю вне стандартных рамок и шаблонов</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Section -->
-  <section class="services section-padding">
-    <div class="container">
-      <h2 class="section-title">Услуги</h2>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3>Индивидуальный менторинг</h3>
-          <p>Персональная работа над вашими бизнес-задачами и развитием лидерских качеств</p>
-          <div class="price">от $300/час</div>
-        </div>
-        <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
-          <h3>Консалтинг проектов</h3>
-          <p>Экспертная поддержка в реализации конкретных бизнес-проектов</p>
-          <div class="price">по запросу</div>
-        </div>
-        <div class="service-card">
-          <div class="service-card-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <h3>Групповые программы</h3>
-          <p>Менторинг для команд топ-менеджеров и развитие корпоративной культуры</p>
-          <div class="price">по запросу</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works Section -->
-  <section id="how-it-works" class="how-it-works section-padding">
-    <div class="container">
-      <h2 class="section-title">Как это работает</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-number">1</div>
-          <h3>Заявка</h3>
-          <p>Вы оставляете заявку через форму на сайте или связываетесь напрямую</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">2</div>
-          <h3>Знакомство</h3>
-          <p>Проводим бесплатный ознакомительный звонок на 30 минут</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">3</div>
-          <h3>Диагностика</h3>
-          <p>Анализируем текущую ситуацию и определяем цели работы</p>
-        </div>
-        <div class="step-card">
-          <div class="step-number">4</div>
-          <h3>Работа</h3>
-          <p>Регулярные сессии, практические задания и достижение результатов</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacts Section -->
-  <section id="contacts" class="contacts section-padding">
-    <div class="container">
-      <h2 class="section-title">Контакты</h2>
-      <div class="contacts-grid">
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
-          <h3>Email</h3>
-          <a href="mailto:julia@grosheva.com">julia@grosheva.com</a>
-        </div>
-        <div class="contact-card">
-          <div class="contact-card-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-          </div>
-          <h3>LinkedIn</h3>
-          <a href="https://linkedin.com/in/julia-grosheva" target="_blank">linkedin.com/in/julia-grosheva</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <a href="https://linkedin.com/in/julia-grosheva" target="_blank" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://julia-grosheva.ru/users/agreement#politika-konfidencialnosti" target="_blank" class="footer-link">
-          Политика конфиденциальности
-        </a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    function toggleMenu() {
-      const nav = document.getElementById('mobileNav');
-      nav.classList.toggle('active');
-    }
-
-    // Close mobile menu when clicking on links
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('mobileNav').classList.remove('active');
-      });
-    });
-  </script>
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            modal.classList.add('open');
+            contactForm.reset();
+        });
+        function closeModal() {
+            modal.classList.remove('open');
+        }
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
 </body>
 </html>
